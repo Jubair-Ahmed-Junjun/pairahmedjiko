@@ -6,635 +6,624 @@
   <title>Pair Ahmed Jiko | Researcher & Biochemist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
-      --text-muted: #475569;
-      --accent: #0d9488;
-      --accent-hover: #0f766e;
-      --accent-light: #f0fdfa;
-      --accent-border: #ccfbf1;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
       --border: #e2e8f0;
-      --radius: 16px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
-      --shadow-hover: 0 12px 20px -5px rgba(13, 148, 136, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, sans-serif; }
     html { scroll-behavior: smooth; }
-    body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; font-size: 0.95rem; }
 
-    /* Sticky Glassmorphism Navigation */
-    nav {
-      position: sticky; top: 0; background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border); z-index: 1000;
-      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    /* All-in-One Topbar Header */
+    header.topbar-container {
+      position: sticky; top: 0; background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+      z-index: 1000; height: 64px; display: flex; align-items: center;
     }
-    .logo { font-weight: 800; font-size: 1.2rem; color: var(--text-main); letter-spacing: -0.5px; }
+
+    .topbar {
+      max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    }
+
+    .logo { 
+      font-weight: 700; font-size: 1.05rem; color: var(--text-main); 
+      letter-spacing: -0.02em; text-decoration: none; white-space: nowrap;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
     .logo span { color: var(--accent); }
     
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+    .nav-links a { 
+      text-decoration: none; color: var(--text-muted); font-weight: 500; 
+      font-size: 0.875rem; padding: 0.4rem 0.75rem; border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--accent); background: var(--accent-light); }
 
-    .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+    /* Inline Search Bar in Topbar */
+    .topbar-search { flex: 1; max-width: 260px; position: relative; }
+    .topbar-search input {
+      width: 100%; padding: 0.4rem 0.85rem 0.4rem 2.2rem; border-radius: 9999px;
+      border: 1px solid var(--border); background: var(--bg); font-size: 0.85rem;
+      outline: none; transition: all 0.2s;
+    }
+    .topbar-search input:focus { border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .topbar-search svg { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; fill: var(--text-muted); }
 
-    /* Main Container */
-    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .btn-cv-header {
+      background-color: var(--accent); color: #fff; padding: 0.45rem 0.9rem;
+      border-radius: 9999px; font-weight: 600; font-size: 0.85rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-cv-header:hover { background-color: var(--accent-hover); }
 
-    /* Hero Section */
-    .hero { 
-      padding: 3.5rem 0 2rem; 
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 3.5rem;
-      align-items: center;
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--text-main); }
+
+    /* Main Grid Layout */
+    .container {
+      max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem;
+      display: grid; grid-template-columns: 280px 1fr; gap: 3rem;
     }
 
-    .profile-img-container {
-      width: 100%;
-      height: 320px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 4px solid var(--card-bg);
-      box-shadow: var(--shadow-md);
-      position: relative;
-    }
-    .profile-img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      transition: transform 0.4s ease;
-    }
-    .profile-img-container:hover img { transform: scale(1.03); }
-
-    .badge { 
-      display: inline-block; background: var(--accent-light); color: var(--accent); 
-      border: 1px solid var(--accent-border); font-weight: 700; font-size: 0.8rem; 
-      padding: 0.35rem 0.9rem; border-radius: 30px; margin-bottom: 0.85rem; 
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .hero h1 { font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: 0.85rem; letter-spacing: -1px; }
-    .hero p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.75rem; max-width: 680px; }
-
-    /* Redesigned Clean Icon Bar */
-    .contact-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .icon-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 0.5rem 0.9rem;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-main);
-      text-decoration: none;
+    /* Left Profile Sidebar Card */
+    .profile-sidebar { 
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 1.75rem 1.25rem; text-align: center; position: sticky; top: 84px; height: fit-content;
       box-shadow: var(--shadow-sm);
-      transition: all 0.25s ease;
     }
-
-    .icon-chip svg {
-      width: 16px;
-      height: 16px;
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
+    
+    .profile-img-container {
+      width: 140px; height: 140px; margin: 0 auto 1.25rem; border-radius: 50%;
+      overflow: hidden; border: 3px solid var(--accent-light); box-shadow: var(--shadow-md);
     }
+    .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-    .icon-chip:hover {
-      border-color: var(--accent);
-      background: var(--accent-light);
-      color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
+    .profile-name { font-size: 1.35rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem; }
+    .profile-title { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; font-weight: 500; }
+    .profile-org { font-size: 0.85rem; color: var(--accent); text-decoration: none; font-weight: 600; display: block; margin-bottom: 1.25rem; line-height: 1.4; }
+
+    /* Social Icons Pill Container */
+    .social-icons { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+    .social-icons a {
+      color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border);
+      transition: all 0.2s ease;
     }
+    .social-icons a:hover { color: var(--accent); background: var(--accent-light); border-color: var(--accent); transform: translateY(-2px); }
+    .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
 
-    /* Section Headers */
-    section { margin-bottom: 4rem; }
+    /* Content Area & Sections */
+    section { margin-bottom: 3.5rem; scroll-margin-top: 84px; }
     .section-title { 
-      font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem; 
-      display: flex; align-items: center; justify-content: space-between; 
-      border-bottom: 2px solid var(--border); padding-bottom: 0.6rem; 
-      letter-spacing: -0.5px;
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-main);
+      display: flex; align-items: center; gap: 0.5rem;
     }
+    .section-title::before { content: ''; display: inline-block; width: 4px; height: 1.2rem; background: var(--accent); border-radius: 2px; }
 
-    /* Grids & Cards */
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    /* Modern Styled Cards */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
     
     .card {
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; box-shadow: var(--shadow-sm); transition: all 0.3s ease;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 1.25rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;
       display: flex; flex-direction: column; justify-content: space-between;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-border); }
-    .card-tag { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.5px; }
-    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .card .subhead { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.6rem; font-weight: 500; }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+    .card-tag { font-size: 0.725rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem; }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-main); }
+    .card .subhead { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 500; }
+
+    /* Training Cards Layout */
+    .training-grid { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1rem; }
+    .training-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm); padding: 0.9rem 1.1rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;
+    }
+    .training-card:hover { transform: translateX(3px); box-shadow: var(--shadow-md); }
+    .training-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .training-org { font-weight: 700; color: var(--text-main); font-size: 0.95rem; }
+    .ref-badge { background-color: var(--accent-light); color: var(--accent); font-size: 0.725rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; font-family: monospace; }
+    .training-desc { font-size: 0.875rem; color: var(--text-muted); }
 
     /* Timeline */
-    .timeline { border-left: 2px solid var(--border); padding-left: 1.5rem; margin-left: 0.5rem; position: relative; }
-    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline { border-left: 2px solid var(--border); padding-left: 1.25rem; margin-left: 0.25rem; }
+    .timeline-item { position: relative; margin-bottom: 1.75rem; }
     .timeline-dot {
-      position: absolute; left: calc(-1.5rem - 6px); top: 0.35rem;
-      width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-      box-shadow: 0 0 0 4px var(--bg);
+      position: absolute; left: calc(-1.25rem - 5px); top: 0.35rem;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent); ring: 4px solid #fff;
     }
-    .timeline-date { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
-    .timeline-title { font-size: 1.1rem; font-weight: 700; margin-top: 0.1rem; }
-    .timeline-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 500; }
+    .timeline-date { font-size: 0.775rem; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+    .timeline-title { font-size: 1rem; font-weight: 700; margin-top: 0.1rem; color: var(--text-main); }
+    .timeline-sub { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.3rem; font-weight: 500; }
 
-    /* Publications Filter & Search */
-    .controls { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; justify-content: space-between; align-items: center; }
-    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    /* Publication Filtering */
+    .controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
     .filter-btn {
-      background: var(--card-bg); border: 1px solid var(--border);
-      padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.85rem;
-      font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
+      background: var(--card-bg); border: 1px solid var(--border); padding: 0.35rem 0.85rem;
+      border-radius: 9999px; font-size: 0.8rem; font-weight: 500; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
     }
     .filter-btn.active, .filter-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-    .search-input {
-      padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 30px;
-      font-size: 0.875rem; width: 240px; outline: none; background: var(--card-bg); transition: 0.2s;
-    }
-    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
 
     .pub-card {
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.25rem 1.5rem; margin-bottom: 1rem; transition: all 0.2s; box-shadow: var(--shadow-sm);
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 1.1rem 1.25rem; margin-bottom: 0.85rem; transition: all 0.2s; box-shadow: var(--shadow-sm);
     }
-    .pub-card:hover { border-color: var(--accent); transform: translateX(4px); }
-    .pub-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .pub-meta { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; }
-    .pub-doi { display: inline-flex; align-items: center; gap: 0.38rem; font-size: 0.825rem; color: var(--accent); text-decoration: none; font-weight: 700; }
-    .pub-doi svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .pub-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .pub-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-main); line-height: 1.4; }
+    .pub-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .pub-doi { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 600; }
 
     /* Gallery Grid */
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
-    .gallery-card {
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;
-    }
-    .gallery-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .gallery-card img { width: 100%; height: 170px; object-fit: cover; display: block; }
-    .gallery-info { padding: 1rem; }
-    .gallery-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .gallery-info p { font-size: 0.8rem; color: var(--text-muted); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .gallery-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .gallery-card img { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .gallery-info { padding: 0.75rem; }
+    .gallery-info h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .gallery-info p { font-size: 0.75rem; color: var(--text-muted); }
     .extra-photo.hidden { display: none; }
 
-    /* Contact Form & Section */
-    .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; }
-    .contact-form {
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.75rem; box-shadow: var(--shadow-sm);
-    }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main); }
+    /* Contact Layout */
+    .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; }
+    .contact-form { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text-main); }
     .form-group input, .form-group textarea {
-      width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border);
-      border-radius: 10px; font-size: 0.9rem; outline: none; transition: 0.2s; background: var(--bg);
+      width: 100%; padding: 0.55rem 0.8rem; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 0.875rem; outline: none; background: #ffffff;
     }
-    .form-group textarea { resize: vertical; height: 120px; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); background: var(--card-bg); box-shadow: 0 0 0 3px var(--accent-light); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .form-group textarea { resize: vertical; height: 90px; }
 
     /* Buttons */
-    .btn-container { text-align: center; margin-top: 1.5rem; }
     .btn {
-      padding: 0.7rem 1.8rem; background-color: var(--accent); color: white;
-      border: none; border-radius: 30px; font-size: 0.9rem; font-weight: 700; cursor: pointer;
-      transition: all 0.2s ease; box-shadow: var(--shadow-sm);
+      padding: 0.55rem 1.4rem; background-color: var(--accent); color: white;
+      border: none; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; display: inline-block;
     }
-    .btn:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .btn:hover { background-color: var(--accent-hover); }
+    .btn-container { text-align: center; margin-top: 1.25rem; }
 
-    /* Simple List */
-    .simple-list { list-style: none; padding-left: 0; }
-    .simple-list li { margin-bottom: 0.6rem; font-size: 0.925rem; color: var(--text-muted); border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; }
-    .simple-list strong { color: var(--text-main); font-weight: 700; }
-
-    /* Responsive Breakpoints */
-    @media (max-width: 868px) {
-      .hero { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
-      .profile-img-container { max-width: 240px; height: 280px; margin: 0 auto; }
-      .contact-grid { justify-content: center; }
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; gap: 2rem; padding: 1.5rem 1rem; }
+      .profile-sidebar { position: relative; top: 0; }
       .contact-container { grid-template-columns: 1fr; }
-      .controls { flex-direction: column; align-items: stretch; }
-      .search-input { width: 100%; }
-      .nav-links {
-        display: none; position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--card-bg); flex-direction: column; padding: 1.5rem;
-        border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md);
-      }
-      .nav-links.active { display: flex; }
+      .nav-links, .topbar-search { display: none; }
+      .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 1rem; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); }
       .menu-toggle { display: block; }
     }
 
-    footer { text-align: center; padding: 2.5rem 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.875rem; font-weight: 500; }
+    footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; background: #ffffff; margin-top: 2rem; }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header Navigation -->
-  <nav>
-    <div class="logo">PAIR AHMED <span>JIKO</span></div>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about" onclick="toggleMenu()">About</a></li>
-      <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
-      <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-      <li><a href="#publications" onclick="toggleMenu()">Publications</a></li>
-      <li><a href="#grants" onclick="toggleMenu()">Grants</a></li>
-      <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
-      <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Topbar Navigation Header -->
+  <header class="topbar-container">
+    <div class="topbar">
+      <a href="#" class="logo">PAIR AHMED <span>JIKO</span></a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" onclick="toggleMenu()">Biography</a></li>
+          <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#publications" onclick="toggleMenu()">Publications</a></li>
+          <li><a href="#grants" onclick="toggleMenu()">Grants</a></li>
+          <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Integrated Search -->
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="searchInput" placeholder="Search papers..." onkeyup="searchPapers()">
+      </div>
+
+      <!-- CV Download Button -->
+      <a href="RESUME OF PAIR AHMED JIKO.pdf" download="RESUME_OF_PAIR_AHMED_JIKO.pdf" class="btn-cv-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
+    </div>
+  </header>
 
   <div class="container">
 
-    <!-- Hero / Profile Section -->
-    <header class="hero" id="about">
+    <!-- Sidebar Profile Card -->
+    <aside class="profile-sidebar">
       <div class="profile-img-container">
-        <img src="Profile Picture.jpg" alt="Pair Ahmed Jiko Profile Photo">
+        <img src="Profile Picture.jpg" alt="Pair Ahmed Jiko">
       </div>
-      <div>
-        <span class="badge">Lab-Incharge & Scientific Officer</span>
-        <h1>Pair Ahmed Jiko</h1>
-        <p>
-          Self-motivated, research-driven scientific professional navigating multidisciplinary health sciences from clinical biochemistry and molecular diagnostics to phytochemical research. Dedicated to diagnostic accuracy, laboratory leadership, and scientific discovery.
+      <h2 class="profile-name">Pair Ahmed Jiko</h2>
+      <div class="profile-title">Lab-Incharge | Scientific Officer | Molecular Biologist</div>
+      <a href="https://cuet.ac.bd" target="_blank" class="profile-org">Chittagong University of Engineering & Technology (CUET)</a>
+
+      <div class="social-icons">
+        <a href="mailto:u20mschem009f@student.cuet.ac.bd" title="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a href="https://scholar.google.com" target="_blank" title="Google Scholar">
+          <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 11c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z"/></svg>
+        </a>
+        <a href="https://researchgate.net" target="_blank" title="ResearchGate">
+          <svg viewBox="0 0 24 24"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472H4.46C3.104 24 2 22.896 2 21.528V2.472C2 1.104 3.104 0 4.46 0h15.08zM8.28 17.04v-2.328h1.224c1.152 0 1.8-.576 1.8-1.512 0-.96-.648-1.488-1.728-1.488H8.28V9.36h3.408c2.448 0 3.864 1.224 3.864 3.12 0 1.368-.816 2.376-2.112 2.808L15.36 17.04h-2.328l-1.632-1.992h-1.44v1.992H8.28z"/></svg>
+        </a>
+        <a href="https://github.com" target="_blank" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Stream -->
+    <main>
+
+      <!-- Biography Section -->
+      <section id="about">
+        <h2 class="section-title">Biography & Summary</h2>
+        <p style="margin-bottom: 0.8rem; color: #334155; text-align: justify;">
+          A skilled biochemistry and molecular biology professional with over <strong>10 years of laboratory experience</strong> across phytochemistry, epidemiology, and public health research. Experienced in project coordination, grant procurement, laboratory quality assurance (ISO 15189:2022), and method optimization alongside active involvement in academic teaching and internship supervision.
         </p>
-        
-        <!-- Clean SVG Icon Contact & Social Section -->
-        <div class="contact-grid">
-          <!-- Location -->
-          <span class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Chattogram, Bangladesh
-          </span>
+        <p style="color: #334155; text-align: justify;">
+          Currently serving as <strong>Project Coordinator / Research Assistant</strong> at Chittagong University of Engineering and Technology (CUET) supervising postgraduate projects, and <strong>Lab-Incharge (Biochemist)</strong> at IAHS Hospital-USTC. Also active as a Peer Reviewer for journals with Wolters Kluwer and Wiley.
+        </p>
+      </section>
 
-          <!-- Email -->
-          <a href="mailto:u20mschem009f@student.cuet.ac.bd" class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email Me
-          </a>
-
-          <!-- Phone -->
-          <a href="tel:+8801814028871" class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +8801814-028871
-          </a>
-
-          <!-- LinkedIn -->
-          <a href="https://linkedin.com" target="_blank" class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-
-          <!-- ResearchGate -->
-          <a href="https://researchgate.net" target="_blank" class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M10 2v7.5A3.5 3.5 0 0 0 13.5 13h0A3.5 3.5 0 0 0 17 9.5V2M6 2v20M18 14v8M14 22h8"/></svg>
-            ResearchGate
-          </a>
-
-          <!-- ORCID -->
-          <a href="https://orcid.org" target="_blank" class="icon-chip">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            ORCID
-          </a>
-
-          <!-- Google Scholar -->
-          <a href="https://scholar.google.com" target="_blank" class="icon-chip">
-            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Google Scholar
-          </a>
-        </div>
-
-      </div>
-    </header>
-
-    <!-- Academics & Training -->
-    <section id="academics">
-      <h2 class="section-title">Academic Background & Education</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div>
-            <span class="card-tag">Postgraduation</span>
-            <h3>M.S. in Chemistry</h3>
-            <div class="subhead">CUET | Dec 2025</div>
-            <p style="font-size: 0.875rem; color: var(--text-muted);">Department of Chemistry. Awarded UGC Institutional Postgraduation Scholarship.</p>
+      <!-- Educational Qualifications -->
+      <section id="academics">
+        <h2 class="section-title">Academic Background & Education</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div>
+              <span class="card-tag">Postgraduation</span>
+              <h3>Masters in Applied Chemistry</h3>
+              <div class="subhead">CUET | 2025</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Department of Chemistry, Chittagong University of Engineering Technology.</p>
+            </div>
           </div>
-        </div>
-        
-        <div class="card">
-          <div>
-            <span class="card-tag">Postgraduation</span>
-            <h3>Master of Public Health (MPH)</h3>
-            <div class="subhead">BOU & CMCH | Nov 2024</div>
-            <p style="font-size: 0.875rem; color: var(--text-muted);">School of Science & Technology; Study Centre at Chittagong Medical College.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div>
-            <span class="card-tag">Undergraduate</span>
-            <h3>B.S. in Biochemistry & Biotech</h3>
-            <div class="subhead">USTC | Jan 2021</div>
-            <p style="font-size: 0.875rem; color: var(--text-muted);">Faculty of Life Science. Expertise in clinical biochemistry and molecular analysis.</p>
-          </div>
-        </div>
-      </div>
-
-      <h3 style="margin-top: 2rem; font-size: 1.15rem; margin-bottom: 0.85rem; font-weight: 700;">Specialized Training & Workshops</h3>
-      <ul class="simple-list">
-        <li><strong>ISO 15189:2022 Certification (BAB):</strong> 57th Understanding Training Course on Medical Laboratories Requirements (March 2025).</li>
-        <li><strong>icddr,b Scientific Writing:</strong> Advanced Training Course on Scientific Manuscript Writing for Publication (Oct 2025).</li>
-        <li><strong>National Institute of Biotechnology:</strong> Practical Training in Basic Biotechnology (Jan 2020).</li>
-        <li><strong>GNOBB CRISPR Workshop:</strong> Advanced Hands-on Training in CRISPR/Cas9 Genome Editing (Nov 2019).</li>
-        <li><strong>CVASU Molecular Diagnostics:</strong> Specialized Training on Clinical Molecular Techniques in Disease Diagnosis (March 2018).</li>
-        <li><strong>CMCH Clinical Rotation:</strong> Rotational Training in Clinical Biochemistry, Pathology, and Transfusion Medicine (2014).</li>
-      </ul>
-    </section>
-
-    <!-- Professional Experience -->
-    <section id="experience">
-      <h2 class="section-title">Professional Journey</h2>
-      <div class="timeline">
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Nov 2020 – Present</div>
-          <div class="timeline-title">Lab-Incharge (Biochemist)</div>
-          <div class="timeline-sub">Institute of Applied Health Sciences Hospital-USTC</div>
-          <p style="font-size: 0.875rem; color: var(--text-muted);">Direct operational laboratory workflows, clinical biochemistry diagnostics, quality protocols, and undergraduate student mentorship.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Sep 2025 – Mar 2026</div>
-          <div class="timeline-title">Scientific Officer (Quality Assurance)</div>
-          <div class="timeline-sub">Epic Health Care (ISO 15189:2022 Accredited Facility)</div>
-          <p style="font-size: 0.875rem; color: var(--text-muted);">Managed ISO laboratory quality frameworks, IQC/EQA audit cycles, CAPA tracking, and precision equipment calibrations.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Jan 2025 – Feb 2026</div>
-          <div class="timeline-title">Lab-Incharge</div>
-          <div class="timeline-sub">Feni Health Care (GAMCA/WAFID Approved Centre)</div>
-          <p style="font-size: 0.875rem; color: var(--text-muted);">Supervised high-volume diagnostic health screenings under international compliance and accreditation guidelines.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Sep 2021 – Aug 2022</div>
-          <div class="timeline-title">Molecular Biologist</div>
-          <div class="timeline-sub">Chevron Covid-19 RT-PCR Diagnostic Laboratory</div>
-          <p style="font-size: 0.875rem; color: var(--text-muted);">Executed viral RNA extraction, automated Real-Time PCR (RT-PCR) testing, and biohazard containment procedures.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Research & Publications -->
-    <section id="publications">
-      <h2 class="section-title">Publications & Research</h2>
-      
-      <div class="controls">
-        <div class="filters">
-          <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
-          <button class="filter-btn" onclick="filterCategory('clinical', this)">Clinical Biochemistry</button>
-          <button class="filter-btn" onclick="filterCategory('phytochemistry', this)">Phytochemistry</button>
-          <button class="filter-btn" onclick="filterCategory('molecular', this)">Molecular Biology</button>
-        </div>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search title or authors..." onkeyup="searchPapers()">
-      </div>
-
-      <div id="pubContainer">
-        <div class="pub-card" data-category="clinical">
-          <span class="card-tag">Clinical Biochemistry</span>
-          <div class="pub-title">Hypomagnesemia and its clinical outcome: a prospective observational study in a tertiary care hospital in Bangladesh</div>
-          <div class="pub-meta">Chowdhury, S. N. et al., Jiko, P. A.* (Corresponding Author) (2026) | <em>Annals of Medicine & Surgery</em></div>
-          <a class="pub-doi" href="https://doi.org/10.1097/MS9.0000000000005242" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            DOI: 10.1097/MS9.0000000000005242
-          </a>
-        </div>
-
-        <div class="pub-card" data-category="phytochemistry">
-          <span class="card-tag">Phytochemistry & In-Silico</span>
-          <div class="pub-title">Isolation, Characterization and in silico Studies of Bioactive Terpenoid and Flavonoid from the Seeds of Mucuna pruriens</div>
-          <div class="pub-meta">Sutradhar, R. K., Jiko, P. A., Hossain, M. S., et al. (2026) | <em>Asian Journal of Chemistry</em></div>
-          <a class="pub-doi" href="https://doi.org/10.14233/ajchem.2026.35289" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            DOI: 10.14233/ajchem.2026.35289
-          </a>
-        </div>
-
-        <div class="pub-card" data-category="molecular">
-          <span class="card-tag">Molecular Microbiology</span>
-          <div class="pub-title">Integron-Mediated Convergence of Carbapenemase and Disinfectant Resistance in 2 Acinetobacter spp. from Critical Care Units</div>
-          <div class="pub-meta">Tofazzal, R., Hossen, B., Jiko, P. A., et al. (2026) | <em>Pre-Print</em></div>
-          <a class="pub-doi" href="https://doi.org/10.64898/2026.04.27.721256" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            DOI: 10.64898/2026.04.27.721256
-          </a>
-        </div>
-
-        <div class="pub-card" data-category="phytochemistry">
-          <span class="card-tag">Phytochemistry</span>
-          <div class="pub-title">Anti-Inflammatory, Analgesic and Anti-Oxidant Effects of Shirakiopsis Indica Fruit Extract</div>
-          <div class="pub-meta">Jiko, P. A., Mohammad, M., et al. (2024) | <em>Journal of Inflammation Research</em></div>
-          <a class="pub-doi" href="https://doi.org/10.2147/JIR.S470835" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            DOI: 10.2147/JIR.S470835
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Grants & Projects -->
-    <section id="grants">
-      <h2 class="section-title">Funded Grants & Project Leadership</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div>
-            <span class="card-tag">Lead Coordinator</span>
-            <h3>Dengue Serotypes Outbreak Project</h3>
-            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">Molecular epidemiology and genetic diversity analysis of circulating dengue serotypes in Chattogram. Funded by CVASU & UGC.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div>
-            <span class="card-tag">Co-PI</span>
-            <h3>TyG Index & Prediabetes Marker</h3>
-            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">Evaluating TyG index alongside HbA1C to predict prediabetes progression and cardiovascular risk factors. Funded by URC-USTC.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div>
-            <span class="card-tag">Project Coordinator</span>
-            <h3>AMR Resistance Convergence</h3>
-            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">Investigating integron-mediated co-resistance to carbapenems and hospital disinfectants in critical care units. Funded by CVASU.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Photo Gallery -->
-    <section id="gallery">
-      <h2 class="section-title">Photo Gallery & Operations</h2>
-      <div class="gallery-grid">
-        <div class="gallery-card">
-          <img src="D6E9D158-8A87-4848-A8DD-20803C2AB1B9.jpg" alt="Streptococcus pneumoniae">
-          <div class="gallery-info">
-            <h4>Streptococcus pneumoniae</h4>
-            <p>Disk diffusion testing (Amikacin AK 30).</p>
-          </div>
-        </div>
-
-        <div class="gallery-card">
-          <img src="IMG_6486.jpg" alt="Staphylococcus epidermidis">
-          <div class="gallery-info">
-            <h4>Staphylococcus epidermidis</h4>
-            <p>Sensitivity profiling using Linezolid (LZD 30).</p>
-          </div>
-        </div>
-
-        <div class="gallery-card">
-          <img src="IMG_20211002_162353_1.jpg" alt="Siemens EXL 200">
-          <div class="gallery-info">
-            <h4>Siemens Dimension EXL 200</h4>
-            <p>Integrated chemistry & immunoassay analyzer.</p>
-          </div>
-        </div>
-
-        <!-- Hidden Extra Gallery Items -->
-        <div class="gallery-card extra-photo hidden">
-          <img src="IMG_20211002_163418.jpg" alt="Automated Track">
-          <div class="gallery-info">
-            <h4>Automated Track Line</h4>
-            <p>High-throughput automated laboratory workflow.</p>
-          </div>
-        </div>
-
-        <div class="gallery-card extra-photo hidden">
-          <img src="IMG_20230412_132451.jpg" alt="Alkushi Extract">
-          <div class="gallery-info">
-            <h4>Compound Isolation</h4>
-            <p>Mucuna pruriens fraction extraction.</p>
-          </div>
-        </div>
-
-        <div class="gallery-card extra-photo hidden">
-          <img src="IMG_20221226_075800.jpg" alt="Controls & Standards">
-          <div class="gallery-info">
-            <h4>Quality Controls</h4>
-            <p>Randox calibrators & CLIA assay preparation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="btn-container">
-        <button class="btn" id="loadMoreBtn" onclick="toggleGallery()">Load More Photos</button>
-      </div>
-    </section>
-
-    <!-- Interactive Contact Section -->
-    <section id="contact">
-      <h2 class="section-title">Contact & Collaborations</h2>
-      <div class="contact-container">
-        <div>
-          <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Get in Touch</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-            Open to academic research collaborations, scientific inquiries, and professional networking. Feel free to reach out directly.
-          </p>
           
-          <div class="card" style="margin-bottom: 1rem;">
-            <span class="card-tag">Address</span>
-            <p style="font-size: 0.9rem; font-weight: 600;">1534/B, Sayed Shah Road, Chawkbazar, Chattogram 4203, Bangladesh</p>
-          </div>
-
-          <div class="card" style="margin-bottom: 1rem;">
-            <span class="card-tag">Email Address</span>
-            <p style="font-size: 0.9rem; font-weight: 600;">u20mschem009f@student.cuet.ac.bd</p>
+          <div class="card">
+            <div>
+              <span class="card-tag">Postgraduation</span>
+              <h3>Master of Public Health (MPH)</h3>
+              <div class="subhead">BOU & CMCH | 2024</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">School of Science & Tech, BOU; Study Centre at Chittagong Medical College Hospital.</p>
+            </div>
           </div>
 
           <div class="card">
-            <span class="card-tag">Phone & WhatsApp</span>
-            <p style="font-size: 0.9rem; font-weight: 600;">+8801814-028871</p>
+            <div>
+              <span class="card-tag">Undergraduate</span>
+              <h3>B.Sc. in Biochemistry & Biotech</h3>
+              <div class="subhead">USTC | 2021</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Faculty of Life Science, University of Science and Technology Chittagong.</p>
+            </div>
           </div>
         </div>
 
-        <div class="contact-form">
-          <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem;">Send a Message</h3>
-          <form onsubmit="handleFormSubmit(event)">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" required placeholder="Dr. Alex Morgan">
+        <h3 style="margin-top: 2rem; font-size: 1.1rem; margin-bottom: 0.85rem; font-weight: 700;">Specialized Training & Workshops</h3>
+        
+        <div class="training-grid">
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">ISO 15189:2022 Certification (BAB)</span>
+              <span class="ref-badge">REF: 25038905.121</span>
             </div>
-            <div class="form-group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" required placeholder="alex.morgan@institution.org">
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" required placeholder="Research Collaboration Inquiry">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" required placeholder="Write your message here..."></textarea>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
+            <div class="training-desc">57th Understanding Training Course on ISO 15189:2022 (Medical Laboratories Requirements) (March 11–13, 2025).</div>
+          </div>
 
-    <!-- References -->
-    <section id="references">
-      <h2 class="section-title">Academic & Professional References</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Prof. Nurul Absar, PhD</h3>
-          <p class="subhead">Chairman & Head, Dept of Biochemistry & Biotechnology, USTC</p>
-          <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">✉️ nurul_ustc@yahoo.com</p>
-        </div>
-        <div class="card">
-          <h3>Dr. Ranajit Kumar Sutradhar, PhD</h3>
-          <p class="subhead">Professor, Dept of Chemistry, CUET</p>
-          <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">✉️ rksutradhar2002@yahoo.com</p>
-        </div>
-        <div class="card">
-          <h3>Dr. Sharmin Chowdhury, MS, PhD</h3>
-          <p class="subhead">US Fulbright Scholar, Professor at CVASU</p>
-          <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">✉️ sharminchowdhury@cvasu.ac.bd</p>
-        </div>
-        <div class="card">
-          <h3>Amam Siddiki DVM, MS, PhD</h3>
-          <p class="subhead">USDA Fellow, US Fulbright Scholar, Professor at CVASU</p>
-          <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">✉️ zsiddiki@cvasu.ac.bd</p>
-        </div>
-      </div>
-    </section>
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">icddr,b Scientific Writing</span>
+              <span class="ref-badge">ICDDRB</span>
+            </div>
+            <div class="training-desc">Training Course on Scientific Manuscript Writing for Publication at icddr,b (October 8, 9 & 12, 2025).</div>
+          </div>
 
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">National Institute of Biotechnology</span>
+              <span class="ref-badge">REF: ST-001072</span>
+            </div>
+            <div class="training-desc">Training on Basic Biotechnology at NIB (Jan 04–09, 2020).</div>
+          </div>
+
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">GNOBB CRISPR Workshop</span>
+              <span class="ref-badge">CRISPR/Cas9</span>
+            </div>
+            <div class="training-desc">Day-long Workshop on CRISPR/Cas9 Genome Editing Organized by GNOBB (Nov 10, 2019).</div>
+          </div>
+
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">CVASU Molecular Techniques</span>
+              <span class="ref-badge">CVASU</span>
+            </div>
+            <div class="training-desc">Hands-on Training Course entitled "Clinical Molecular Techniques in Disease Diagnosis" (March 23–24, 2018).</div>
+          </div>
+
+          <div class="training-card">
+            <div class="training-header">
+              <span class="training-org">CMCH Field Training</span>
+              <span class="ref-badge">Reg: 23866</span>
+            </div>
+            <div class="training-desc">Field Training in Clinical Biochemistry, Microbiology, Pathology & Blood Bank at CMCH (July–Nov 2014).</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Experience -->
+      <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+          
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Jan 2025 – Present</div>
+            <div class="timeline-title">Project Coordinator / Research Assistant</div>
+            <div class="timeline-sub">Chittagong University of Engineering and Technology (CUET)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Under Prof. Dr. Ranajit Kumar Sutradhar. Providing research & technical support for 4 M.S. and 3 Ph.D. research projects.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Jan 2024 – Present</div>
+            <div class="timeline-title">Co-PI & Project Supervisor</div>
+            <div class="timeline-sub">Bangladesh Bioscience Research Group</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Supervised 32+ undergraduate and 17+ postgraduate students. Coordinating with 10+ national & international collaborators.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Nov 2020 – Present</div>
+            <div class="timeline-title">Lab-Incharge (Biochemist)</div>
+            <div class="timeline-sub">Institute of Applied Health Sciences Hospital-USTC</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Department of Clinical Biochemistry. Directing clinical diagnostics and laboratory operations.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Sep 2025 – Mar 2026</div>
+            <div class="timeline-title">Scientific Officer (Quality Assurance)</div>
+            <div class="timeline-sub">Epic Health Care (ISO 15189:2022 Accredited)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Department of Laboratory Medicine. Managing laboratory quality systems and compliance.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Jan 2025 – Feb 2026</div>
+            <div class="timeline-title">Lab-Incharge</div>
+            <div class="timeline-sub">Feni Health Care (Approved GAMCA/WAFID Centre)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Overseeing diagnostic workflows and quality compliance.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Sep 2021 – Aug 2022</div>
+            <div class="timeline-title">Molecular Biologist</div>
+            <div class="timeline-sub">Chevron Covid-19 RT-PCR & Antigen Testing Lab</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Executed viral extraction, molecular diagnostic procedures, and RT-PCR assays.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Sep 2015 – Dec 2020</div>
+            <div class="timeline-title">Senior Laboratory Technologist</div>
+            <div class="timeline-sub">Life Save Blood Bank & Transfusion Centre</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Managed blood banking procedures, cross-matching, and transfusion safety protocols.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2 class="section-title">Research Articles & Publications</h2>
+        
+        <div class="controls">
+          <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+          <button class="filter-btn" onclick="filterCategory('clinical', this)">Clinical Biochemistry</button>
+          <button class="filter-btn" onclick="filterCategory('phytochemistry', this)">Phytochemistry</button>
+          <button class="filter-btn" onclick="filterCategory('molecular', this)">Molecular & Microbiology</button>
+        </div>
+
+        <div id="pubContainer">
+          <div class="pub-card" data-category="clinical">
+            <span class="card-tag">Clinical Biochemistry</span>
+            <div class="pub-title">Hypomagnesemia and its clinical outcome: a prospective observational study in a tertiary care hospital in Bangladesh</div>
+            <div class="pub-meta">Chowdhury, S. N., Majumder, S., Joy, M. I. S., Azad, A. K., Subaika, A. H., Hassan, K., Islam, M. M., <strong>Jiko, P. A. (Corresponding author)</strong> (2026) | <em>Annals of Medicine & Surgery</em></div>
+            <a class="pub-doi" href="https://doi.org/10.1097/MS9.0000000000005242" target="_blank">DOI: 10.1097/MS9.0000000000005242</a>
+          </div>
+
+          <div class="pub-card" data-category="clinical">
+            <span class="card-tag">Nutrition & Toxicology</span>
+            <div class="pub-title">Comparative Study Analysis of Reheated Local Unrefined Oils and Store-Bought Refined Oil in Wister Albino Rats</div>
+            <div class="pub-meta">Chowdhury, K. H., Hasan, R., <strong>Jiko, P. A.</strong>, Karim, S. (2026) | <em>Journal of Applied Life Sciences International</em></div>
+            <a class="pub-doi" href="https://doi.org/10.9734/jalsi/2026/v29i3776" target="_blank">DOI: 10.9734/jalsi/2026/v29i3776</a>
+          </div>
+
+          <div class="pub-card" data-category="molecular">
+            <span class="card-tag">Molecular Microbiology</span>
+            <div class="pub-title">Integron-Mediated Convergence of Carbapenemase and Disinfectant Resistance in 2 Acinetobacter spp. from Critical Care Units</div>
+            <div class="pub-meta">Tofazzal, R., Hossen, B., Chowdhury, S., <strong>Jiko, P. A.</strong>, Mohajan, S., Alam, S., Khan, A. A., Majumder, S., Arafat, M., Absar, N., Siddiki, Z. (2026) | <em>Pre-Print</em></div>
+            <a class="pub-doi" href="https://doi.org/10.64898/2026.04.27.721256" target="_blank">DOI: 10.64898/2026.04.27.721256</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Phytochemistry & In-Silico</span>
+            <div class="pub-title">Isolation, Characterization and in silico Studies of Bioactive Terpenoid and Flavonoid from the Seeds of Mucuna pruriens</div>
+            <div class="pub-meta">Sutradhar, R. K., <strong>Jiko, P. A.</strong>, Hossain, M. S., Islam, M. N., Hossain, M. E. (2026) | <em>Asian Journal of Chemistry</em></div>
+            <a class="pub-doi" href="https://doi.org/10.14233/ajchem.2026.35289" target="_blank">DOI: 10.14233/ajchem.2026.35289</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Phytochemistry</span>
+            <div class="pub-title">Isolation, Characterization and Molecular Docking Studies of Bioactive Phyto-constituents from the Seeds of Mucuna pruriens</div>
+            <div class="pub-meta">Sutradhar, R. K., Hossain, M. S., <strong>Jiko, P. A.</strong>, Islam, M. N., Hossain, M. E. (2025) | <em>Oriental Journal of Chemistry</em></div>
+            <a class="pub-doi" href="https://doi.org/10.13005/ojc/410528" target="_blank">DOI: 10.13005/ojc/410528</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Hepatoprotective Medicine</span>
+            <div class="pub-title">A hepatoprotective experiment on taro vegetable (Colocasia esculenta (L.) Schott) flower employing animal models by mitigating oxidative stress</div>
+            <div class="pub-meta">Mohammad, M., Richi, T., Hossain, R., Arafat, M., <strong>Jiko, P. A.</strong>, Emon, N., Rabbi, S., Khastagir, T., Hossain, H., Alam, S. (2025) | <em>Animal Models and Experimental Medicine</em></div>
+            <a class="pub-doi" href="https://doi.org/10.1002/ame2.70031" target="_blank">DOI: 10.1002/ame2.70031</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Phytochemistry</span>
+            <div class="pub-title">Amelioration of hepatic injury through oxidative stress management employing methanolic extract of Crepe-ginger (Cheilocostus speciosus) flower</div>
+            <div class="pub-meta">Mohammad, M., Richi, T., Arafat, M., <strong>Jiko, P. A.</strong>, Haque, R., Hossain, H., Hossain, S., Ashrafi, S., Taher, A., Alam, S. (2025) | <em>Journal of Chemistry & Biodiversity</em></div>
+            <a class="pub-doi" href="https://doi.org/10.1002/cbdv.202500261" target="_blank">DOI: 10.1002/cbdv.202500261</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Pre-Print</span>
+            <div class="pub-title">Hepatoprotective experiment of Taro vegetable flower employing animal models by mitigating oxidative stress</div>
+            <div class="pub-meta">Mohammad, M., Richi, T., Hossain, R., Arafat, M., <strong>Jiko, P. A.</strong>, et al. (2024) | <em>Pre-Print</em></div>
+            <a class="pub-doi" href="https://doi.org/10.2147/rs.3.rs-5400811/v1" target="_blank">DOI: 10.2147/rs.3.rs-5400811/v1</a>
+          </div>
+
+          <div class="pub-card" data-category="phytochemistry">
+            <span class="card-tag">Inflammation Research</span>
+            <div class="pub-title">Anti-Inflammatory, Analgesic and Anti-Oxidant Effects of Shirakiopsis Indica Fruit Extract: A Mangrove Species</div>
+            <div class="pub-meta"><strong>Jiko, P. A.</strong>, Mohammad, M., Richi, F. T., Islam, A., Alam, S., Abdullah, M., Taher, Shao, C., Wang, S., Geng, P., Mamun, A. A. (2024) | <em>Journal of Inflammation Research</em></div>
+            <a class="pub-doi" href="https://doi.org/10.2147/JIR.S470835" target="_blank">DOI: 10.2147/JIR.S470835</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Funding -->
+      <section id="grants">
+        <h2 class="section-title">Funding & Grants</h2>
+        <div class="grid-2">
+          <div class="card">
+            <div>
+              <span class="card-tag">Project Coordinator</span>
+              <h3>Dengue Serotypes Outbreak Project</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">'Molecular Epidemiology and Genetic Diversity of the Circulating Dengue Serotypes in Chattogram: 2024 Outbreak'. Funded by UGC & CVASU.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <span class="card-tag">Co-PI</span>
+              <h3>TyG Index & Prediabetes Study</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">'Triglyceride glucose (TyG) index and HbA1C Level as a biomarker for predicting prediabetes and cardiovascular risk'. Funded by URC-USTC.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <span class="card-tag">Project Supervisor</span>
+              <h3>Acinetobacter Resistance Study</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">'Integron-Mediated Convergence of Carbapenemase and Disinfectant Resistance in Acinetobacter spp. from CCUs'. Funded by CVASU & UGC.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <img src="D6E9D158-8A87-4848-A8DD-20803C2AB1B9.jpg" alt="Streptococcus pneumoniae">
+            <div class="gallery-info">
+              <h4>Streptococcus pneumoniae</h4>
+              <p>Disk diffusion testing (Amikacin AK 30).</p>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <img src="IMG_6486.jpg" alt="Staphylococcus epidermidis">
+            <div class="gallery-info">
+              <h4>Staphylococcus epidermidis</h4>
+              <p>Sensitivity profiling using Linezolid.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <img src="IMG_20211002_162353_1.jpg" alt="Siemens EXL 200">
+            <div class="gallery-info">
+              <h4>Siemens Dimension EXL 200</h4>
+              <p>Integrated chemistry analyzer.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card extra-photo hidden">
+            <img src="IMG_20211002_163418.jpg" alt="Automated Track">
+            <div class="gallery-info">
+              <h4>Automated Track Line</h4>
+              <p>High-throughput automated laboratory workflow.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn" id="loadMoreBtn" onclick="toggleGallery()">Load More Photos</button>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2 class="section-title">Contact & Collaborations</h2>
+        <div class="contact-container">
+          <div>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">
+              Open to academic research collaborations and professional networking.
+            </p>
+            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;"><strong>Address:</strong> 1534/B; Sayed Shah Road, Chawkbazar, Chattogram 4203, Bangladesh</p>
+            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;"><strong>Email:</strong> u20mschem009f@student.cuet.ac.bd</p>
+            <p style="font-size: 0.85rem;"><strong>Phone:</strong> +8801814-028871</p>
+          </div>
+
+          <div class="contact-form">
+            <form onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required placeholder="Dr. Alex Morgan">
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" required placeholder="alex.morgan@institution.org">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required placeholder="Write your message..."></textarea>
+              </div>
+              <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 
   <footer>
@@ -642,60 +631,36 @@
   </footer>
 
   <script>
-    // Responsive Mobile Navigation Toggle
     function toggleMenu() {
-      const navLinks = document.getElementById('navLinks');
-      navLinks.classList.toggle('active');
+      document.getElementById('navLinks').classList.toggle('active');
     }
 
-    // Toggle Photo Gallery Extra Images
     function toggleGallery() {
       const hiddenPhotos = document.querySelectorAll('.extra-photo');
       const btn = document.getElementById('loadMoreBtn');
-      
       hiddenPhotos.forEach(photo => photo.classList.toggle('hidden'));
-      
-      if (btn.innerText === "Load More Photos") {
-        btn.innerText = "Show Less";
-      } else {
-        btn.innerText = "Load More Photos";
-      }
+      btn.innerText = (btn.innerText === "Load More Photos") ? "Show Less" : "Load More Photos";
     }
 
-    // Category Filter for Publications
     function filterCategory(category, buttonEl) {
       document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
       buttonEl.classList.add('active');
-
       const cards = document.querySelectorAll('.pub-card');
       cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
       });
     }
 
-    // Search Publications Filter
     function searchPapers() {
       const query = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.pub-card');
-
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+      document.querySelectorAll('.pub-card').forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(query) ? 'block' : 'none';
       });
     }
 
-    // Contact Form Handler
     function handleFormSubmit(event) {
       event.preventDefault();
-      alert('Thank you for reaching out! Pair Ahmed Jiko will get back to you shortly.');
+      alert('Thank you! Your message has been sent.');
       event.target.reset();
     }
   </script>
