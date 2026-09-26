@@ -1,521 +1,1640 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jubair Ahmed Junjun | Data Science & AI Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .filter-btn.active {
-            background-color: rgba(20, 184, 166, 0.2);
-            border-color: #2dd4bf;
-            color: #2dd4bf;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pair Ahmed Jiko - Clinical Biochemist, Molecular Biologist, and Researcher. Portfolio showcasing publications, projects, and professional experience.">
+  <title>Pair Ahmed Jiko · Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================================================
+       1. RESET & VARIABLES
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-body: #ffffff;
+      --bg-surface: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent: #0a66c2;
+      --accent-hover: #084d94;
+      --accent-soft: #f0f7ff;
+      --border-light: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --success: #10b981;
+      --success-soft: #ecfdf5;
+      --success-border: #a7f3d0;
+      --success-text: #047857;
+      --error: #ef4444;
+      
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --fs-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);
+      --fs-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);
+      --fs-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+      --fs-md: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+      --fs-lg: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+      --fs-xl: clamp(1.3rem, 1.2rem + 0.75vw, 1.6rem);
+      --fs-2xl: clamp(1.6rem, 1.4rem + 1vw, 2.2rem);
+      --fs-3xl: clamp(2rem, 1.8rem + 1.5vw, 2.8rem);
+
+      --space-xs: clamp(0.4rem, 0.35rem + 0.25vw, 0.5rem);
+      --space-sm: clamp(0.6rem, 0.5rem + 0.5vw, 0.8rem);
+      --space-md: clamp(0.8rem, 0.7rem + 0.5vw, 1.2rem);
+      --space-lg: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+      --space-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+      --space-2xl: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--fs-base);
+      line-height: 1.7;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      min-height: 100vh;
+      padding: var(--space-lg) var(--space-md);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+      transition: color var(--transition-fast);
+    }
+    a:hover { color: var(--accent-hover); }
+
+    ul { list-style: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--bg-body);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl) var(--space-2xl) var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+    }
+
+    /* ==========================================================================
+       2. TOP NAV
+       ========================================================================== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border-light);
+      position: relative;
+    }
+
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md) var(--space-lg);
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      align-items: center;
+    }
+
+    .top-nav > a,
+    .top-nav .dropdown > a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      padding: 0.3rem 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+    }
+
+    .top-nav > a:hover,
+    .top-nav .dropdown > a:hover { color: var(--accent); }
+
+    .dropdown { position: relative; display: inline-block; }
+
+    .dropdown > a::after {
+      content: '\f107';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.7rem;
+      transition: transform var(--transition-fast);
+      margin-left: 0.2rem;
+    }
+
+    .dropdown:hover > a::after { transform: rotate(180deg); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 230px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 0.5rem 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all var(--transition-base);
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.6rem 1.2rem;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding-left: 1.5rem;
+    }
+
+    .dropdown-menu a i {
+      margin-right: 0.6rem;
+      width: 1rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      transition: color var(--transition-fast);
+    }
+
+    .dropdown-menu a:hover i { color: var(--accent); }
+
+    .dropdown-toggle { display: none; }
+
+    .top-icons {
+      display: flex;
+      gap: var(--space-sm);
+      color: var(--text-muted);
+      font-size: var(--fs-md);
+    }
+
+    .top-icons i {
+      cursor: pointer;
+      transition: color var(--transition-fast);
+      padding: 0.3rem;
+    }
+    .top-icons i:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding-left: 1rem;
+        display: none;
+        background: transparent;
+      }
+      .dropdown.open .dropdown-menu { display: block; }
+      .dropdown > a::after { display: none; }
+      .dropdown-toggle {
+        display: inline-block;
+        margin-left: 0.3rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        cursor: pointer;
+      }
+    }
+
+    /* ==========================================================================
+       3. HERO / BIO
+       ========================================================================== */
+    .bio-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2xl);
+      align-items: flex-start;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .bio-avatar {
+      flex: 0 0 240px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin-bottom: var(--space-lg);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid var(--bg-body);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .avatar-wrapper:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bio-avatar h3 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.15rem;
+      letter-spacing: -0.01em;
+    }
+
+    .bio-avatar .role {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: var(--space-md);
+    }
+
+    .bio-social {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: var(--fs-lg);
+    }
+
+    .bio-social a {
+      color: var(--text-muted);
+      transition: color var(--transition-fast), transform var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem;
+    }
+
+    .bio-social a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .bio-text { flex: 1 1 500px; }
+
+    .bio-text h2 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-3xl);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .bio-text p {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+      font-size: var(--fs-base);
+      line-height: 1.8;
+    }
+
+    .bio-text p a { color: var(--accent); font-weight: 500; }
+    .bio-text p a:hover { text-decoration: underline; }
+
+    /* CV Action Buttons */
+    .cv-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: var(--space-md);
+    }
+
+    .cv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      font-family: var(--font-heading);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all var(--transition-base);
+    }
+
+    .cv-btn i { font-size: 0.95rem; }
+
+    .cv-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(10, 102, 194, 0.12);
+      text-decoration: none;
+    }
+
+    .cv-btn.download-cv {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .cv-btn.download-cv:hover {
+      background: var(--accent-hover);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.3);
+    }
+
+    .cv-btn.view-cv {
+      background: #ffffff;
+      color: var(--text-primary);
+    }
+
+    .cv-btn.view-cv:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 850px) {
+      .bio-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-xl);
+      }
+      .bio-avatar { flex: 0 0 auto; }
+      .bio-text { text-align: center; }
+      .bio-text p { text-align: left; }
+      .cv-actions { justify-content: center; }
+    }
+
+    /* ==========================================================================
+       4. SECTIONS & TITLES
+       ========================================================================== */
+    section {
+      margin-bottom: var(--space-2xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-title i { color: var(--accent); font-size: var(--fs-lg); }
+
+    /* ==========================================================================
+       5. GRID SYSTEM
+       ========================================================================== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* ==========================================================================
+       6. CARDS
+       ========================================================================== */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card.hidden { display: none; }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      background: #ffffff;
+    }
+
+    .card.ongoing { border-left: 4px solid var(--success); }
+    .card.ongoing:hover { border-left-color: #059669; }
+
+    .card h4 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card .meta {
+      font-size: var(--fs-xs);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      align-self: flex-start;
+    }
+
+    .card .sub {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    .card p {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .card ul {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.6;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Card Header (holds status badge + meta) */
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Status badge for ongoing work */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--success-text);
+      background: var(--success-soft);
+      border: 1px solid var(--success-border);
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Pulsing dot */
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      position: relative;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    .status-badge .pulse-dot,
+    .filter-btn .pulse-dot {
+      width: 7px;
+      height: 7px;
+      margin-right: 0.4rem;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* ==========================================================================
+       7. FILTER NAV
+       ========================================================================== */
+    .filter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-surface);
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .filter-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: var(--space-md);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filter-nav::-webkit-scrollbar { display: none; }
+    }
+
+    /* ==========================================================================
+       8. PUBLICATIONS
+       ========================================================================== */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pub-item {
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent);
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      transition: all var(--transition-base);
+      border: 1px solid var(--border-light);
+      border-left-width: 4px;
+    }
+
+    .pub-item:hover {
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      border-color: var(--border-hover);
+      border-left-color: var(--accent);
+    }
+
+    .pub-item strong { color: var(--text-primary); font-weight: 600; }
+
+    .pub-item .doi {
+      font-size: var(--fs-xs);
+      color: var(--accent);
+      word-break: break-all;
+      display: inline-block;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       9. SKILLS
+       ========================================================================== */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-tags span {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: var(--fs-xs);
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-fast);
+      cursor: default;
+    }
+
+    .skill-tags span:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       10. TRAINING
+       ========================================================================== */
+    .training-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .training-item {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-fast);
+    }
+
+    .training-item:hover {
+      background: #ffffff;
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(4px);
+    }
+
+    .training-item i {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .training-item .date {
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 100px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 550px) {
+      .training-item { flex-direction: column; gap: 0.2rem; }
+      .training-item .date { min-width: auto; }
+    }
+
+    /* ==========================================================================
+       11. CONTACT FORM
+       ========================================================================== */
+    .contact-form-wrapper {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition-base);
+    }
+
+    .contact-form-wrapper:hover { box-shadow: var(--shadow-md); }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .contact-form .full-width { grid-column: 1 / -1; }
+
+    .form-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      transition: color var(--transition-fast);
+    }
+
+    .form-group label i {
+      color: var(--accent);
+      margin-right: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-body);
+      font-size: var(--fs-sm);
+      color: var(--text-primary);
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+
+    .form-group .validation-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .form-group input:valid:not(:placeholder-shown) ~ .validation-icon,
+    .form-group textarea:valid:not(:placeholder-shown) ~ .validation-icon {
+      opacity: 1;
+      color: var(--success);
+    }
+
+    .form-group input:invalid:not(:placeholder-shown) ~ .validation-icon,
+    .form-group textarea:invalid:not(:placeholder-shown) ~ .validation-icon {
+      opacity: 1;
+      color: var(--error);
+    }
+
+    .form-group input:focus ~ label,
+    .form-group textarea:focus ~ label { color: var(--accent); }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      background: var(--accent);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: var(--fs-md);
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .form-submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.25);
+    }
+
+    .form-submit:active { transform: translateY(0); }
+
+    .form-submit i {
+      font-size: 1rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .form-submit:hover i { transform: translateX(3px); }
+
+    .form-submit.sent { background: var(--success); }
+    .form-submit.sent:hover { background: #0d9668; }
+
+    @media (max-width: 650px) {
+      .contact-form { grid-template-columns: 1fr; gap: var(--space-md); }
+      .contact-form-wrapper { padding: var(--space-lg); }
+    }
+
+    /* ==========================================================================
+       12. FOOTER
+       ========================================================================== */
+    .footer-contact {
+      padding-top: var(--space-xl);
+      margin-top: var(--space-xl);
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    .footer-contact .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .footer-contact .contact-item i {
+      color: var(--accent);
+      font-size: 1rem;
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-contact a { color: var(--text-muted); }
+    .footer-contact a:hover { color: var(--accent); }
+
+    @media (max-width: 650px) {
+      .footer-contact { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ==========================================================================
+       13. SCROLL ANIMATIONS
+       ========================================================================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       14. RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 480px) {
+      .container { padding: var(--space-md); }
+      .top-nav { gap: 0.4rem; font-size: var(--fs-xs); }
+      .top-icons { font-size: var(--fs-sm); }
+      .avatar-wrapper { width: 160px; height: 160px; }
+      .bio-text h2 { font-size: var(--fs-2xl); }
+      .section-title { font-size: var(--fs-xl); }
+      .card { padding: var(--space-md); }
+      .pub-item { padding: var(--space-sm); font-size: var(--fs-xs); }
+      .filter-btn { font-size: var(--fs-xs); padding: 0.4rem 0.9rem; }
+      .cv-btn { font-size: var(--fs-xs); padding: 0.5rem 1rem; }
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-300 font-sans leading-relaxed selection:bg-teal-500 selection:text-slate-900">
+<body>
+  <div class="container">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-40 glass-card border-b border-slate-800/80">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-black tracking-wider text-slate-100">JAJ<span class="text-teal-400">.</span></a>
-            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-                <a href="#about" class="hover:text-teal-400 transition-colors">About</a>
-                <a href="#research" class="hover:text-teal-400 transition-colors">Research & Papers</a>
-                <a href="#projects" class="hover:text-teal-400 transition-colors">Projects</a>
-                <a href="#github-projects" class="hover:text-teal-400 transition-colors">GitHub Repos</a>
-                <a href="#experience" class="hover:text-teal-400 transition-colors">Experience</a>
-                <a href="#contact" class="hover:text-teal-400 transition-colors">Contact</a>
-            </div>
-            <div class="flex items-center gap-3">
-                <button onclick="toggleCommandPalette()" class="hidden sm:flex items-center gap-2 text-xs px-3 py-1.5 bg-slate-900 border border-slate-700 text-slate-400 rounded-lg hover:border-teal-400 transition">
-                    <i class="fas fa-terminal text-teal-400"></i>
-                    <span>Cmd + K</span>
-                </button>
-                <a href="mailto:jubair.ahmed.junjun@gmail.com" class="px-4 py-2 text-xs font-semibold tracking-wider text-teal-400 border border-teal-400/40 rounded-full hover:bg-teal-400/10 transition">GET IN TOUCH</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="about" class="min-h-screen flex items-center pt-28 pb-16 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-8">
-                <!-- Real-Time Dynamic Status Header -->
-                <div class="inline-flex flex-wrap items-center gap-3 px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                        Open to Collaborations
-                    </span>
-                    <span class="text-slate-600">•</span>
-                    <span id="london-clock" class="text-slate-300">London Time: Loading...</span>
-                </div>
-
-                <h1 class="text-4xl sm:text-6xl font-black text-slate-100 tracking-tight leading-none mb-4">
-                    Jubair Ahmed <span class="gradient-text">Junjun</span>
-                </h1>
-                <h2 class="text-xl sm:text-3xl font-bold text-slate-400 mb-6">
-                    Data & AI Researcher • Software Engineer
-                </h2>
-                <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-2xl leading-relaxed">
-                    MSc in Data Intelligence from Canterbury Christ Church University (UK). Specialized in Deep Learning, Medical Image Processing, Physiological Signal Analysis, Full-Stack Web Technologies, and Data Analytics. Published researcher with Springer and content creator passionate about scalable AI systems.
-                </p>
-
-                <!-- Social Links -->
-                <div class="flex flex-wrap gap-4 items-center mb-10">
-                    <a href="https://github.com/Jubair-Ahmed-Junjun" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-100 font-medium transition border border-slate-700">
-                        <i class="fab fa-github text-xl"></i> GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/jubair-ahmed-junjun-4ab6a0177/" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-medium transition">
-                        <i class="fab fa-linkedin text-xl"></i> LinkedIn
-                    </a>
-                    <a href="https://www.slideshare.net/jubairjunjun" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-orange-600/90 hover:bg-orange-500 text-white font-medium transition">
-                        <i class="fab fa-slideshare text-xl"></i> SlideShare
-                    </a>
-                    <a href="https://youtube.com/@JubairAhmedJunjun" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-medium transition">
-                        <i class="fab fa-youtube text-xl"></i> YouTube
-                    </a>
-                </div>
-            </div>
-
-            <!-- Skills & Tech Stack Summary -->
-            <div class="lg:col-span-4 glass-card p-6 rounded-2xl border border-slate-800 space-y-6">
-                <h3 class="text-lg font-bold text-slate-100 border-b border-slate-800 pb-3 flex items-center gap-2">
-                    <i class="fas fa-layer-group text-teal-400"></i> Tech Stack Spotlight
-                </h3>
-                <p class="text-xs text-slate-500">Click a category to highlight matching work:</p>
-                <div id="tech-stack-container" class="space-y-4 text-xs">
-                    <!-- Dynamic tech stack inserted via JS -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research & Publications Section -->
-    <section id="research" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div class="flex items-center gap-3">
-                <span class="text-teal-400 font-mono text-xl">01.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Research & Publications</h2>
-            </div>
-
-            <!-- Interactive Category Filter -->
-            <div class="flex flex-wrap gap-2 text-xs font-mono">
-                <button onclick="filterCategory('all')" class="filter-btn active px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-teal-400 transition">All</button>
-                <button onclick="filterCategory('medical')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-teal-400 transition">Medical AI</button>
-                <button onclick="filterCategory('analytics')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-teal-400 transition">Business Analytics</button>
-                <button onclick="filterCategory('deep learning')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-teal-400 transition">Deep Learning</button>
-            </div>
+    <!-- ========== TOP NAVIGATION ========== -->
+    <header class="top-bar">
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#publications">Publications</a>
+        
+        <!-- Research Projects Dropdown -->
+        <div class="dropdown" id="researchDropdown">
+          <a href="#projects" id="dropdownToggle">
+            Research Projects
+            <span class="dropdown-toggle">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#projects" data-filter="all"><i class="fas fa-layer-group"></i> All Research</a>
+            <a href="#projects" data-filter="ongoing"><i class="fas fa-spinner"></i> Work in Progress</a>
+            <a href="#projects" data-filter="molecular"><i class="fas fa-dna"></i> Molecular Epidemiology</a>
+            <a href="#projects" data-filter="drug"><i class="fas fa-pills"></i> Drug Discovery & Phytochemistry</a>
+            <a href="#projects" data-filter="amr"><i class="fas fa-bacteria"></i> Antimicrobial Resistance</a>
+            <a href="#projects" data-filter="clinical"><i class="fas fa-heartbeat"></i> Clinical & Public Health</a>
+          </div>
         </div>
 
-        <h3 class="text-lg font-bold text-teal-400 mb-6 font-mono"><i class="fas fa-flask mr-2"></i> Academic Research Projects</h3>
-        <div id="research-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <!-- Dynamic research inserted via JS -->
-        </div>
+        <a href="#experience">Experience</a>
+        <a href="#training">Training</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="top-icons">
+        <i class="fas fa-search" title="Search" aria-label="Search"></i>
+        <i class="fas fa-user-circle" title="Profile" aria-label="Profile"></i>
+      </div>
+    </header>
 
-        <h3 class="text-lg font-bold text-teal-400 mb-6 font-mono"><i class="fas fa-book mr-2"></i> Peer-Reviewed Springer Publications</h3>
-        <div id="publications-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Dynamic publications inserted via JS -->
+    <!-- ========== HERO / BIO ========== -->
+    <section class="bio-section">
+      <div class="bio-avatar">
+        <div class="avatar-wrapper">
+          <img src="https://i.ibb.co/ymnBq0Tz/your-image.jpg" alt="Pair Ahmed Jiko" loading="eager">
         </div>
-    </section>
-
-    <!-- Team & Featured Software Projects -->
-    <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex items-center gap-3 mb-12">
-            <span class="text-teal-400 font-mono text-xl">02.</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Featured Software Projects</h2>
-            <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        <h3>Pair Ahmed Jiko</h3>
+        <div class="role">Lab In-Charge · Biochemist</div>
+        <div class="bio-social">
+          <a href="https://www.linkedin.com/in/pair-ahmed-jiko-3b3216190/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.researchgate.net/profile/Pair-Jiko" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+          <a href="https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a href="#" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+          <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
-        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Dynamic featured projects inserted via JS -->
-        </div>
-    </section>
-
-    <!-- Live GitHub Repositories Section -->
-    <section id="github-projects" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex items-center gap-3 mb-4">
-            <span class="text-teal-400 font-mono text-xl">03.</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Live GitHub Repositories</h2>
-            <div class="h-px bg-slate-800 flex-1 ml-4"></div>
-        </div>
-        <p class="text-slate-400 text-sm mb-8">Fetched dynamically from GitHub API</p>
-        <div id="github-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="col-span-3 text-center py-10 text-teal-400">
-                <i class="fas fa-circle-notch fa-spin text-3xl"></i>
-                <p class="text-xs text-slate-400 mt-2">Loading live GitHub repositories...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience, Honors & Education -->
-    <section id="experience" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex items-center gap-3 mb-12">
-            <span class="text-teal-400 font-mono text-xl">04.</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Experience & Achievements</h2>
-            <div class="h-px bg-slate-800 flex-1 ml-4"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Experience Timeline -->
-            <div>
-                <h3 class="text-base font-bold text-slate-200 mb-6 flex items-center gap-2"><i class="fas fa-briefcase text-teal-400"></i> Career Journey</h3>
-                <div id="experience-container" class="relative border-l-2 border-slate-800 ml-3 space-y-8 pl-6">
-                    <!-- Dynamic experience inserted via JS -->
-                </div>
-            </div>
-
-            <!-- Education & Honors -->
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-base font-bold text-slate-200 mb-6 flex items-center gap-2"><i class="fas fa-graduation-cap text-teal-400"></i> Education</h3>
-                    <div id="education-container" class="space-y-4">
-                        <!-- Dynamic education inserted via JS -->
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-base font-bold text-slate-200 mb-4 flex items-center gap-2"><i class="fas fa-trophy text-teal-400"></i> Honors & Awards</h3>
-                    <div id="honors-container" class="glass-card p-5 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-2">
-                        <!-- Dynamic honors inserted via JS -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Footer -->
-    <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-100 mb-4">Let's Connect & Collaborate</h2>
-        <p class="text-slate-400 text-base max-w-lg mx-auto mb-8">
-            I am open to research collaborations, AI consulting, or technical software development opportunities.
+      </div>
+      <div class="bio-text">
+        <h2>Biography</h2>
+        <p>
+          Clinical Biochemist and biomedical science professional with interdisciplinary academic training in Biochemistry, Chemistry, and Public Health. Experienced in in-vivo and in-vitro research, phytochemical isolation and characterization, molecular diagnostics, and laboratory quality management alongside active involvement in academic teaching, internship supervision and training.
         </p>
-        <a href="mailto:jubair.ahmed.junjun@gmail.com" class="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-lg transition shadow-lg shadow-teal-500/20 mb-12">
-            Send Email
-        </a>
-        <p class="text-xs text-slate-600">Jubair Ahmed Junjun • London, United Kingdom</p>
+        <p>
+          Dedicated and detail-oriented research expert with years of experience conducting comprehensive research across various disciplines. Committed to advancing scientific knowledge, high-quality education, and evidence-based laboratory practice. Seeking advanced research training in molecular and biomedical sciences to develop specialized expertise and contribute to evidence-based investigations of complex biological and health-related questions.
+        </p>
+        <p>
+          Currently Lab In-Charge (Biochemist) at the <a href="#">Institute of Applied Health Sciences Hospital–USTC</a>, and Research Assistant at <a href="#">CUET</a>. My research explores the intersection of clinical chemistry, molecular biology, and public health, with a focus on antimicrobial resistance, dengue epidemiology, and bioactive compound discovery.
+        </p>
+
+        <!-- CV ACTION BUTTONS -->
+        <div class="cv-actions">
+          <a href="Pair-Ahmed-Jiko-CV.pdf" target="_blank" rel="noopener" class="cv-btn view-cv">
+            <i class="fas fa-file-pdf"></i> View CV
+          </a>
+          <a href="Pair-Ahmed-Jiko-CV.pdf" download class="cv-btn download-cv">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Command Palette Modal -->
-    <div id="command-palette" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-start justify-center pt-24 px-4">
-        <div class="glass-card w-full max-w-xl rounded-2xl border border-slate-700 shadow-2xl overflow-hidden">
-            <div class="p-4 border-b border-slate-800 flex items-center gap-3">
-                <i class="fas fa-terminal text-teal-400"></i>
-                <input id="palette-input" onkeyup="filterPalette()" type="text" placeholder="Type a section or keyword (e.g., Python, Research, Contact)..." class="w-full bg-transparent text-slate-100 text-sm focus:outline-none font-mono">
-                <button onclick="toggleCommandPalette()" class="text-xs text-slate-500 hover:text-slate-300">ESC</button>
-            </div>
-            <div id="palette-results" class="p-2 max-h-64 overflow-y-auto text-xs space-y-1 font-mono">
-                <a href="#about" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">📌 Jump to About</a>
-                <a href="#research" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">🔬 Jump to Research & Publications</a>
-                <a href="#projects" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">🚀 Jump to Featured Projects</a>
-                <a href="#github-projects" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">💻 Jump to GitHub Repos</a>
-                <a href="#experience" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">💼 Jump to Experience</a>
-                <a href="#contact" onclick="toggleCommandPalette()" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300">✉️ Jump to Contact</a>
-            </div>
+    <!-- ========== EDUCATION ========== -->
+    <section id="education" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+      <div class="grid-3">
+        <article class="card">
+          <div class="meta">2025</div>
+          <h4>Masters in Chemistry</h4>
+          <div class="sub">Chittagong University of Engineering & Technology (CUET)</div>
+          <p><strong>Thesis:</strong> Isolation, Characterization and in silico Studies of Bioactive Terpenoid and Flavonoid from the Seeds of <em>Mucuna pruriens</em>.</p>
+          <p><strong>Supervisor:</strong> Prof. Ranajit Kumar Sutradhar, PhD</p>
+        </article>
+        <article class="card">
+          <div class="meta">2024</div>
+          <h4>Master of Public Health (MPH)</h4>
+          <div class="sub">Bangladesh Open University (BOU) · Study Centre: CMCH</div>
+          <p><strong>Thesis:</strong> Molecular Epidemiology and Genetic Diversity of the Circulating Dengue Serotypes in Chattogram: 2024 Outbreak.</p>
+          <p><strong>Supervisor:</strong> Prof. Sayeed Mahmud, PhD, MPH, BCS, MPhil</p>
+        </article>
+        <article class="card">
+          <div class="meta">2021</div>
+          <h4>BSc in Biochemistry and Biotechnology</h4>
+          <div class="sub">University of Science and Technology Chittagong (USTC)</div>
+          <p><strong>Project:</strong> Industrial Project Tour at The Albion Laboratories Limited (2020).</p>
+          <p><strong>Supervisor:</strong> Prof. Nurul Absar, PhD</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section id="experience" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+      <div class="grid-2">
+        <article class="card">
+          <div class="meta">Nov 2020 – Present</div>
+          <h4>Lab In-Charge (Biochemist)</h4>
+          <div class="sub">Institute of Applied Health Sciences Hospital – USTC (ex-BBMH)</div>
+          <ul>
+            <li>Oversee clinical biochemistry laboratory operations and quality management.</li>
+            <li>Implement ISO 15189:2022 practices, supervise staff and trainees.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="meta">Sep 2025 – Mar 2026</div>
+          <h4>Scientific Officer (Quality Assurance)</h4>
+          <div class="sub">Epic Health Care (ISO 15189:2022 accredited Lab)</div>
+          <ul>
+            <li>Developed and maintained quality assurance protocols.</li>
+            <li>Ensured compliance with national and international laboratory standards.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="meta">Jan 2025 – Feb 2026</div>
+          <h4>Lab In-Charge</h4>
+          <div class="sub">Feni Health Care (GAMCA/WAFID Medical Centre)</div>
+          <ul>
+            <li>Managed daily laboratory operations and diagnostic workflows.</li>
+            <li>Maintained accreditation and quality benchmarks.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="meta">Sep 2021 – Aug 2022</div>
+          <h4>Molecular Biologist</h4>
+          <div class="sub">Chevron COVID-19 RT-PCR & Antigen Testing Lab</div>
+          <ul>
+            <li>Performed RT-PCR and antigen testing for SARS-CoV-2.</li>
+            <li>Handled sample processing, data analysis, and reporting.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="meta">2025 – Present</div>
+          <h4>Research Assistant</h4>
+          <div class="sub">Chittagong University of Engineering and Technology (CUET)</div>
+          <ul>
+            <li>Providing research and technical support for four M.S. and three Ph.D. research projects.</li>
+            <li>Contributing to project planning, experimental execution, data interpretation, and scientific reporting.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="meta">2024 – Present</div>
+          <h4>Project Coordinator and Co-PI</h4>
+          <div class="sub">Bangladesh Bioscience Research Group · USTC</div>
+          <ul>
+            <li>Supervised and mentored over 32+ undergraduate and 17+ postgraduate students.</li>
+            <li>Coordinated multidisciplinary research activities with 10+ national and international collaborators.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== PUBLICATIONS ========== -->
+    <section id="publications" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-file-alt"></i> Selected Publications</h2>
+      <div class="pub-list">
+        <div class="pub-item">
+          <strong>Jiko, P.A.</strong>, Mohammad, M., Richi, F. T., et al. (2024). Anti-Inflammatory, Analgesic and Anti-Oxidant Effects of <em>Shirakiopsis Indica</em> (Willd). Fruit Extract: A Mangrove Species in the Field of Inflammation Research. <em>Journal of Inflammation Research</em>.
+          <br><span class="doi">DOI: 10.2147/JIR.S470835</span>
         </div>
-    </div>
+        <div class="pub-item">
+          Sutradhar, R. K., <strong>Jiko, P. A.</strong>, Hossain, M. S., et al. (2026). Isolation, Characterization and in silico Studies of Bioactive Terpenoid and Flavonoid from the Seeds of <em>Mucuna pruriens</em>. <em>Asian Journal of Chemistry</em>.
+          <br><span class="doi">DOI: 10.14233/ajchem.2026.35289</span>
+        </div>
+        <div class="pub-item">
+          Chowdhury, S. N., Majumder, S., Joy, M. I. S., ... <strong>Jiko, P. A.</strong> (Corresponding author) (2026). Hypomagnesemia and its clinical outcome: a prospective observational study in a tertiary care hospital in Bangladesh. <em>Annals of Medicine & Surgery</em>.
+          <br><span class="doi">DOI: 10.1097/MS9.0000000000005242</span>
+        </div>
+        <div class="pub-item">
+          Nipa, F. A., <strong>Jiko, P. A.</strong> (Corresponding author), et al. (2026). Antidiabetic Potential of <em>Ficus hispida</em> Fruit Extract in Alloxan-Induced Swiss Albino Diabetic Mice: In Vivo and Molecular Docking Study. <em>Pre-Print</em>.
+          <br><span class="doi">DOI: 10.21203/rs.3.rs-10568437/v1</span>
+        </div>
+        <div class="pub-item">
+          Mohammad, M., Richi, T., ... <strong>Jiko, P. A.</strong>, et al. (2025). Amelioration of hepatic injury through oxidative stress management employing methanolic extract of Crepe-ginger. <em>Journal of Chemistry & Biodiversity</em>.
+          <br><span class="doi">DOI: 10.1002/cbdv.202500261</span>
+        </div>
+        <div class="pub-item">
+          Mohammad, M., Richi, T., Hossain, R., ... <strong>Jiko, P. A.</strong>, et al. (2025). A hepatoprotective experiment on taro vegetable (<em>Colocasia esculenta</em> (L.) Schott) flower employing animal models by mitigating oxidative stress. <em>Animal Models and Experimental Medicine</em>.
+          <br><span class="doi">DOI: 10.1002/ame2.70031</span>
+        </div>
+        <div class="pub-item">
+          Sutradhar, R. K., Hossain, M. S., <strong>Jiko, P. A.</strong>, et al. (2025). Isolation, Characterization and Molecular Docking Studies of Bioactive Phytoconstituents from the Seeds of <em>Mucuna pruriens</em>. <em>Oriental Journal of Chemistry</em>.
+          <br><span class="doi">DOI: 10.13005/ojc/410528</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- JavaScript Engine -->
-    <script>
-        const portfolioData = {
-            techStack: [
-                {
-                    category: "Expert Languages & Web",
-                    skills: "Python, HTML5, CSS3, JavaScript (ES6), React JS, TailwindCSS, Bootstrap.",
-                    tag: "web"
-                },
-                {
-                    category: "Backend & Databases",
-                    skills: "Node JS, Express JS, PHP, Laravel, MongoDB, REST API, Firebase Auth, JWT, MySQL, MS SQL Server.",
-                    tag: "backend"
-                },
-                {
-                    category: "AI & Core Domains",
-                    skills: "Machine Learning, Deep Learning, Medical Signal/Image Analytics, Data Structures & Algorithms.",
-                    tag: "ai"
-                }
-            ],
-            research: [
-                {
-                    status: "Ongoing Research Project",
-                    tags: ["analytics", "business"],
-                    title: "The Impact of Artificial Intelligence and Data Analytics on Strategic Decision-Making and Business Performance in UK SMEs",
-                    desc: "Evaluating how adoption of AI-driven analytics, predictive modeling, and data frameworks enhances operational efficiency and strategic positioning across Small and Medium Enterprises (SMEs) in the United Kingdom."
-                },
-                {
-                    status: "MSc Research Thesis",
-                    tags: ["medical", "deep learning"],
-                    title: "Brain Tumor Segmentation using Transformer-based U-Net (BraTS 2020)",
-                    desc: "Applied Transformer-based U-Net architectures to multimodal MRI datasets (BraTS 2020) for high-precision 3D brain tumor region segmentation and automated medical diagnostics."
-                }
-            ],
-            publications: [
-                {
-                    venue: "IC4IR 2021 • Springer",
-                    tags: ["medical", "deep learning"],
-                    title: "Brain Tumor Classification using Transfer Learning from MRI Images",
-                    authors: "J. A. Junjun, M. S. Hossain, K. Andersson, N. Nahar, & D. Nasrin (2021)",
-                    desc: "Automated classification techniques leveraging custom Deep Transfer Learning models on complex MRI scans.",
-                    link: "https://www.slideshare.net/jubairjunjun"
-                },
-                {
-                    venue: "TCCE 2021 • Springer",
-                    tags: ["medical", "deep learning"],
-                    title: "A Hybrid CNN-LSTM-Based Emotional Status Determination using Physiological Signals",
-                    authors: "M. Hossain, N. Nahar, F. Ara, J. A. Junjun, & K. Andersson (2021)",
-                    desc: "Integrated Convolutional Networks with LSTM layers to decode sequential biological signals for human emotion classification.",
-                    link: "https://www.slideshare.net/jubairjunjun"
-                }
-            ],
-            featuredProjects: [
-                {
-                    title: "TeleApp (Telehealth Application Analytics)",
-                    category: "Software Development Project",
-                    desc: "Analyzed potential applications for telehealth during COVID-19, conducted market size evaluation, competitor analysis, and IP patent prior-art searches to guide development strategies."
-                },
-                {
-                    title: "Hajj-e-Baitullah Software System",
-                    category: "Enterprise System Project",
-                    desc: "Collaborated with senior engineers at MassGroupBD to build and deploy software modules, while supporting technical recruitment and onboarding leadership."
-                }
-            ],
-            experience: [
-                {
-                    period: "Oct 2023 - Sept 2024 • London, UK",
-                    role: "Data Analyst (Part-Time)",
-                    company: "Techmart Ltd",
-                    desc: "Managed product pricing structures, performed competitor metrics tracking, and conducted monthly revenue evaluations to guide wholesale inventory strategy."
-                },
-                {
-                    period: "2018 - 2022 • Chittagong, Bangladesh",
-                    role: "Graduate Student / Research Assistant",
-                    company: "BGC Trust University",
-                    desc: "Managed healthcare data pipelines, preprocessed MRI and bio-physiological data, and co-authored Springer research papers."
-                },
-                {
-                    period: "Jan 2022 - Oct 2022 • Chittagong, Bangladesh",
-                    role: "Junior Developer",
-                    company: "MassGroupBD",
-                    desc: "Coded, tested, and documented software features, developed test plans, and conducted user training sessions for ongoing system installations."
-                },
-                {
-                    period: "July 2021 - May 2023 • Bangladesh",
-                    role: "Guest ICT Teacher",
-                    company: "Barakhain Jameya Jamhuria Fazil Madrasah",
-                    desc: "Taught fundamentals of ICT, logic gates, and fundamental computer programming syntax in C and Python."
-                },
-                {
-                    period: "Jan 2020 - Present",
-                    role: "Educational Content Creator",
-                    company: "YouTube (@Jubair Ahmed Junjun)",
-                    desc: "Produce video lectures covering C, C++, Python, PHP, and Laravel for self-directed technical learners globally."
-                }
-            ],
-            education: [
-                {
-                    degree: "MSc in Data Intelligence",
-                    institution: "Canterbury Christ Church University",
-                    location: "Kent, United Kingdom",
-                    period: "Sept 2023 - Sept 2024",
-                    details: "Core Modules: Data Analysis, Machine Learning, Data Visualization, Data Governance."
-                },
-                {
-                    degree: "B.Sc in Computer Science and Engineering",
-                    institution: "BGC Trust University Bangladesh",
-                    location: "Chittagong, Bangladesh",
-                    period: "Graduated May 2022",
-                    details: "Focus Areas: Advanced Data Structures, Algorithms, Software Engineering, Object-Oriented Programming."
-                }
-            ],
-            honors: [
-                "🏆 <strong>1st Position:</strong> Software Exhibition Competition ('Winter School 2021'), BGCTUB.",
-                "🧮 <strong>Finalist:</strong> 11th & 12th National Undergraduate Mathematics Olympiad (2019 & 2021).",
-                "💻 <strong>Competitive Programming Contests:</strong> Intra-BGCTUB (2018-2021), RMSTU-BDPC 2021, IUT 10th ICT FEST 2019, CUET CSE FEST 2018 & 2019.",
-                "📜 <strong>Certifications:</strong> Digital Marketer (LEDP, Bangladesh), Ethical Hacker (Team Matrix)."
-            ]
-        };
+    <!-- ========== RESEARCH & PROJECTS (CATEGORY + STATUS FILTER) ========== -->
+    <section id="projects" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-flask"></i> Research & Projects</h2>
+      
+      <!-- Filter Navigation Bar -->
+      <div class="filter-nav" id="filterNav">
+        <button class="filter-btn active" data-filter="all">All Research</button>
+        <button class="filter-btn" data-filter="ongoing"><span class="pulse-dot"></span> Work in Progress</button>
+        <button class="filter-btn" data-filter="molecular">Molecular Epidemiology</button>
+        <button class="filter-btn" data-filter="drug">Drug Discovery & Phytochemistry</button>
+        <button class="filter-btn" data-filter="amr">Antimicrobial Resistance</button>
+        <button class="filter-btn" data-filter="clinical">Clinical & Public Health</button>
+      </div>
 
-        // Render Tech Stack dynamically with Spotlight Click Event
-        document.getElementById('tech-stack-container').innerHTML = portfolioData.techStack.map(stack => `
-            <div onclick="spotlightTag('${stack.tag}')" class="p-2.5 rounded-lg border border-slate-800 bg-slate-900/50 hover:border-teal-400/50 cursor-pointer transition">
-                <span class="text-teal-400 font-bold block mb-1">${stack.category}:</span>
-                <p class="text-slate-400">${stack.skills}</p>
-            </div>
-        `).join('');
+      <!-- Project Grid -->
+      <div class="grid-3" id="projectGrid">
 
-        // Render Research Projects
-        function renderResearch(items) {
-            document.getElementById('research-container').innerHTML = items.map(res => `
-                <div class="research-item glass-card p-6 rounded-xl border border-slate-800 hover:border-teal-500/50 transition">
-                    <span class="px-3 py-1 bg-teal-500/10 text-teal-400 text-xs font-mono rounded-full border border-teal-500/20">${res.status}</span>
-                    <h4 class="text-base font-bold text-slate-100 mt-3 mb-2">${res.title}</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">${res.desc}</p>
-                </div>
-            `).join('');
-        }
+        <!-- ===== IN PROGRESS / ONGOING RESEARCH ===== -->
+        <article class="card ongoing" data-category="molecular" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">Jan 2025 – Present</div>
+          </div>
+          <h4>Lead Coordinator</h4>
+          <p><strong>Molecular Epidemiology and Genetic Diversity of Circulating Dengue Serotypes in Chattogram: 2024 Outbreak</strong></p>
+          <div class="sub">Funded by CVASU & UGC Bangladesh</div>
+        </article>
 
-        // Render Publications
-        function renderPublications(items) {
-            document.getElementById('publications-container').innerHTML = items.map(pub => `
-                <div class="publication-item glass-card p-6 rounded-xl border border-slate-800 hover:border-teal-500/50 transition group">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded-full border border-slate-700">${pub.venue}</span>
-                        <a href="${pub.link}" target="_blank" class="text-slate-500 group-hover:text-teal-400 transition"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                    <h4 class="text-base font-bold text-slate-100 group-hover:text-teal-300 transition mb-2">${pub.title}</h4>
-                    <p class="text-xs font-mono text-slate-400 mb-3">${pub.authors}</p>
-                    <p class="text-xs text-slate-400 leading-relaxed">${pub.desc}</p>
-                </div>
-            `).join('');
-        }
+        <article class="card ongoing" data-category="drug" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">Jan 2025 – Present</div>
+          </div>
+          <h4>Research Assistant</h4>
+          <p><strong>Isolation, Characterization and in silico Studies of Bioactive Terpenoid and Flavonoid from the Seeds of <em>Mucuna pruriens</em></strong></p>
+          <div class="sub">CUET · Prof. Dr. Ranajit Kumar Sutradhar</div>
+        </article>
 
-        renderResearch(portfolioData.research);
-        renderPublications(portfolioData.publications);
+        <article class="card ongoing" data-category="clinical" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">Mar 2024 – Present</div>
+          </div>
+          <h4>Co-Principal Investigator</h4>
+          <p><strong>Triglyceride glucose (TyG) index and HbA1C Level as a biomarker for predicting prediabetes and cardiovascular risk</strong></p>
+          <div class="sub">Funded by URC Call-05, USTC</div>
+        </article>
 
-        // Render Featured Projects
-        document.getElementById('projects-container').innerHTML = portfolioData.featuredProjects.map(proj => `
-            <div class="glass-card p-6 rounded-xl border border-slate-800 hover:border-teal-500/50 transition">
-                <span class="px-3 py-1 bg-slate-800 text-teal-400 text-xs font-mono rounded-full border border-slate-700">${proj.category}</span>
-                <h4 class="text-base font-bold text-slate-100 mt-3 mb-2">${proj.title}</h4>
-                <p class="text-xs text-slate-400 leading-relaxed">${proj.desc}</p>
-            </div>
-        `).join('');
+        <article class="card ongoing" data-category="molecular" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">2024 – Present</div>
+          </div>
+          <h4>Co-Investigator</h4>
+          <p><strong>Epidemiological and Hematological Characterization of Inherited Hemoglobin Disorders in Chattogram, Bangladesh</strong></p>
+          <div class="sub">Bangladesh Bioscience Research Group</div>
+        </article>
 
-        // Render Experience
-        document.getElementById('experience-container').innerHTML = portfolioData.experience.map(exp => `
-            <div class="relative">
-                <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-teal-400 border-4 border-slate-950"></div>
-                <span class="text-xs font-mono text-teal-400">${exp.period}</span>
-                <h4 class="text-sm font-bold text-slate-100">${exp.role} <span class="text-slate-400 text-xs">@ ${exp.company}</span></h4>
-                <p class="text-xs text-slate-400 mt-1">${exp.desc}</p>
-            </div>
-        `).join('');
+        <article class="card ongoing" data-category="clinical" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">Ongoing</div>
+          </div>
+          <h4>Lead Independent Collaborative Project</h4>
+          <p><strong>The Knowledge, Attitude and Practice of Community People on Dengue Fever in Chattogram: A Cross-sectional Study</strong></p>
+          <div class="sub">Bangladesh Bioscience Research Group</div>
+        </article>
 
-        // Render Education
-        document.getElementById('education-container').innerHTML = portfolioData.education.map(edu => `
-            <div class="glass-card p-5 rounded-xl border border-slate-800">
-                <span class="text-xs font-mono text-teal-400">${edu.period}</span>
-                <h4 class="text-base font-bold text-slate-100 mt-1">${edu.degree}</h4>
-                <p class="text-xs text-slate-400 font-medium">${edu.institution} • ${edu.location}</p>
-                <p class="text-xs text-slate-500 mt-2">${edu.details}</p>
-            </div>
-        `).join('');
+        <article class="card ongoing" data-category="clinical" data-status="ongoing">
+          <div class="card-header">
+            <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
+            <div class="meta">Ongoing</div>
+          </div>
+          <h4>Lead Independent Collaborative Project</h4>
+          <p><strong>Trends in Hematological and Biochemical Profile of Different Clinical Forms in Seropositive Dengue Fever Patients during the 2024 Outbreak in South-Eastern Bangladesh</strong></p>
+          <div class="sub">Bangladesh Bioscience Research Group</div>
+        </article>
 
-        // Render Honors
-        document.getElementById('honors-container').innerHTML = portfolioData.honors.map(honor => `
-            <p>${honor}</p>
-        `).join('');
+        <!-- ===== COMPLETED RESEARCH ===== -->
+        <article class="card" data-category="amr" data-status="completed">
+          <div class="card-header">
+            <div class="meta">Jun 2023 – Dec 2025</div>
+          </div>
+          <h4>Project Coordinator</h4>
+          <p><strong>Integron-Mediated Convergence of Carbapenemase and Disinfectant Resistance in <em>Acinetobacter</em> spp.</strong></p>
+          <div class="sub">Funded by CVASU & UGC Bangladesh (Grant 2023-24, 19)</div>
+        </article>
 
-        // Automated Real-Time London Clock Feature
-        function updateLondonClock() {
-            const options = { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const timeString = new Intl.DateTimeFormat('en-GB', options).format(new Date());
-            document.getElementById('london-clock').innerText = `London Time: ${timeString} GMT/BST`;
-        }
-        setInterval(updateLondonClock, 1000);
-        updateLondonClock();
+        <article class="card" data-category="amr" data-status="completed">
+          <div class="card-header">
+            <div class="meta">2026</div>
+          </div>
+          <h4>Co-Author</h4>
+          <p><strong>Co-occurrence of Carbapenemase Genes, Disinfectant Resistance Determinants, and Class 1 Integrons in <em>Acinetobacter</em> spp.</strong></p>
+          <div class="sub">Pre-Print</div>
+        </article>
 
-        // Interactive Category Filter Function
-        function filterCategory(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        <article class="card" data-category="drug" data-status="completed">
+          <div class="card-header">
+            <div class="meta">2026</div>
+          </div>
+          <h4>Co-Author</h4>
+          <p><strong>Antidiabetic Potential of <em>Ficus hispida</em> Fruit Extract in Alloxan-Induced Swiss Albino Diabetic Mice: In Vivo and Molecular Docking Study</strong></p>
+          <div class="sub">Pre-Print</div>
+        </article>
 
-            if (category === 'all') {
-                renderResearch(portfolioData.research);
-                renderPublications(portfolioData.publications);
-                return;
-            }
+        <article class="card" data-category="drug" data-status="completed">
+          <div class="card-header">
+            <div class="meta">2024</div>
+          </div>
+          <h4>Lead Author</h4>
+          <p><strong>Anti-Inflammatory, Analgesic and Anti-Oxidant Effects of <em>Shirakiopsis Indica</em> (Willd). Fruit Extract</strong></p>
+          <div class="sub">Journal of Inflammation Research</div>
+        </article>
 
-            const filteredRes = portfolioData.research.filter(r => r.tags.includes(category));
-            const filteredPub = portfolioData.publications.filter(p => p.tags.includes(category));
-            renderResearch(filteredRes);
-            renderPublications(filteredPub);
-        }
+        <article class="card" data-category="clinical" data-status="completed">
+          <div class="card-header">
+            <div class="meta">2026</div>
+          </div>
+          <h4>Corresponding Author</h4>
+          <p><strong>Hypomagnesemia and its clinical outcome: a prospective observational study in a tertiary care hospital in Bangladesh</strong></p>
+          <div class="sub">Annals of Medicine & Surgery</div>
+        </article>
 
-        // Tech Stack Spotlight Feature
-        function spotlightTag(tag) {
-            const query = tag === 'ai' ? 'medical' : tag === 'web' ? 'analytics' : 'all';
-            filterCategory(query);
-            document.getElementById('research').scrollIntoView({ behavior: 'smooth' });
-        }
+        <article class="card" data-category="clinical" data-status="completed">
+          <div class="card-header">
+            <div class="meta">2026</div>
+          </div>
+          <h4>Co-Author</h4>
+          <p><strong>Immune Response and Molecular Insights of Dengue Fever: A Systematic Review</strong></p>
+          <div class="sub">Pre-Print</div>
+        </article>
 
-        // Command Palette Toggle Function
-        function toggleCommandPalette() {
-            const palette = document.getElementById('command-palette');
-            palette.classList.toggle('hidden');
-            if (!palette.classList.contains('hidden')) {
-                document.getElementById('palette-input').focus();
-            }
-        }
+      </div>
+    </section>
 
-        // Keyboard Shortcut Listener (Cmd+K / Ctrl+K)
-        window.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                toggleCommandPalette();
-            }
-            if (e.key === 'Escape') {
-                document.getElementById('command-palette').classList.add('hidden');
-            }
+    <!-- ========== TRAINING ========== -->
+    <section id="training" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-chalkboard-teacher"></i> Training & Workshops</h2>
+      <div class="training-list">
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">Mar 2025</span>
+          <span>57th Understanding Training Course on ISO 15189:2022 (Medical Laboratories) — Bangladesh Accreditation Board (BAB), Ministry of Industry.</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">Oct 2025</span>
+          <span>Scientific Manuscript Writing for Publication — icddr,b.</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">Jan 2020</span>
+          <span>Training on Basic Biotechnology — National Institute of Biotechnology (NIB).</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">Nov 2019</span>
+          <span>Workshop on CRISPR/Cas9 Genome Editing — Global Network of Bangladeshi Biotechnologists (GNOBB).</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">Mar 2018</span>
+          <span>Hands-on Training: "Clinical Molecular Techniques in Disease Diagnosis" — CVASU.</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">2016</span>
+          <span>2nd National Workshop on Bioinformatics and Computational Biology, Chittagong.</span>
+        </div>
+        <div class="training-item">
+          <i class="fas fa-certificate"></i>
+          <span class="date">2014</span>
+          <span>Field Training on Clinical Biochemistry, Microbiology, Pathology & Blood Bank — Chittagong Medical College and Hospital (CMCH).</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-cogs"></i> Skills & Competences</h2>
+      <div class="grid-2">
+        <div>
+          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-bottom: var(--space-sm); color: var(--text-primary);">Technical & Research</h4>
+          <div class="skill-tags">
+            <span>Clinical Chemistry</span>
+            <span>Molecular Biology</span>
+            <span>Phytochemical Isolation</span>
+            <span>In-vivo & In-vitro Assays</span>
+            <span>Molecular Docking</span>
+            <span>Antimicrobial Resistance</span>
+            <span>ISO 15189:2022</span>
+            <span>SPSS</span>
+            <span>R Programming</span>
+            <span>Python</span>
+            <span>Scientific Writing</span>
+            <span>Project Management</span>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-bottom: var(--space-sm); color: var(--text-primary);">Languages</h4>
+          <div class="skill-tags">
+            <span>English (Professional Proficiency)</span>
+            <span>Bengali (Native or Bilingual)</span>
+          </div>
+          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm); color: var(--text-primary);">Peer Reviewer</h4>
+          <div class="skill-tags">
+            <span>Annals of Medicine (Wolters Kluwer)</span>
+            <span>eFood (Wiley)</span>
+            <span>Chemistry & Biodiversity (Wiley)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT FORM ========== -->
+    <section id="contact" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-paper-plane"></i> Get in Touch</h2>
+      
+      <div class="contact-form-wrapper">
+        <form class="contact-form" id="contactForm" action="#" method="POST">
+          
+          <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Dr. Jane Smith" required>
+            <i class="fas fa-check-circle validation-icon"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane.smith@example.com" required>
+            <i class="fas fa-check-circle validation-icon"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="phone"><i class="fas fa-phone-alt"></i> Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+880 1814-028871" required>
+            <i class="fas fa-check-circle validation-icon"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="research">Research Collaboration</option>
+              <option value="publication">Publication Inquiry</option>
+              <option value="speaking">Speaking Engagement</option>
+              <option value="mentorship">Mentorship Request</option>
+              <option value="other">Other</option>
+            </select>
+            <i class="fas fa-check-circle validation-icon"></i>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message"><i class="fas fa-comment-dots"></i> Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, question, or idea..." required></textarea>
+            <i class="fas fa-check-circle validation-icon"></i>
+          </div>
+
+          <button type="submit" class="form-submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer-contact">
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:u20mschem009@student.cuet.ac.bd">u20mschem009@student.cuet.ac.bd</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone-alt"></i>
+        <span>+880 1814-028871</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-pin"></i>
+        <span>Pahartoli, Raozan, Chattogram – 4349, Bangladesh</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // 1. Scroll Reveal Animation
+    (function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      fadeElements.forEach(el => observer.observe(el));
+
+      if (!('IntersectionObserver' in window)) {
+        fadeElements.forEach(el => el.classList.add('visible'));
+      }
+    })();
+
+    // 2. Project Filtering Logic (supports category + "ongoing" status)
+    (function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('#projectGrid .card');
+      const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+
+      function applyFilter(filterValue) {
+        // Update active button state
+        filterBtns.forEach(b => {
+          if (b.getAttribute('data-filter') === filterValue) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
         });
 
-        // Command Palette Search Function
-        function filterPalette() {
-            const input = document.getElementById('palette-input').value.toLowerCase();
-            const links = document.querySelectorAll('#palette-results a');
-            links.forEach(link => {
-                const text = link.innerText.toLowerCase();
-                link.style.display = text.includes(input) ? 'block' : 'none';
-            });
+        // Filter cards by category OR status
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const status = card.getAttribute('data-status');
+
+          card.style.animation = 'none';
+          card.offsetHeight;
+          card.style.animation = 'fadeInUp 0.5s ease forwards';
+
+          let show = false;
+          if (filterValue === 'all') {
+            show = true;
+          } else if (filterValue === 'ongoing') {
+            show = (status === 'ongoing');
+          } else {
+            show = (category === filterValue);
+          }
+
+          if (show) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      });
+
+      dropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const filterValue = link.getAttribute('data-filter');
+          
+          applyFilter(filterValue);
+          
+          const target = document.querySelector('#projects');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+
+          const dropdown = document.getElementById('researchDropdown');
+          if (dropdown) {
+            dropdown.classList.remove('open');
+          }
+        });
+      });
+    })();
+
+    // 3. Mobile Dropdown Toggle
+    (function() {
+      const dropdown = document.getElementById('researchDropdown');
+      const toggle = document.getElementById('dropdownToggle');
+      
+      if (!dropdown || !toggle) return;
+
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
+
+      toggle.addEventListener('click', (e) => {
+        if (isMobile()) {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (isMobile() && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (!isMobile()) {
+          dropdown.classList.remove('open');
+        }
+      });
+    })();
+
+    // 4. Smooth Scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.closest('.dropdown-menu')) return;
+        
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // 5. Contact Form Submission (Simulated)
+    (function() {
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (!form || !submitBtn) return;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        if (!data.name || !data.email || !data.phone || !data.subject || !data.message) {
+          alert('Please fill in all fields before submitting.');
+          return;
         }
 
-        // Fetch Live GitHub Repositories
-        async function fetchGitHubRepos() {
-            const username = 'Jubair-Ahmed-Junjun';
-            const ghContainer = document.getElementById('github-container');
-            
-            try {
-                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
-                const repos = await response.json();
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
 
-                if (!Array.isArray(repos) || repos.length === 0) {
-                    ghContainer.innerHTML = `<p class="col-span-3 text-slate-500 text-center">No public repositories found.</p>`;
-                    return;
-                }
-
-                ghContainer.innerHTML = repos.map(repo => `
-                    <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-teal-400/50 transition flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <i class="far fa-folder text-teal-400 text-xl"></i>
-                                <a href="${repo.html_url}" target="_blank" class="text-slate-400 hover:text-teal-400 text-sm"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                            <h4 class="text-base font-bold text-slate-100 mb-2 truncate">${repo.name}</h4>
-                            <p class="text-xs text-slate-400 line-clamp-3 mb-4">${repo.description || 'No description provided.'}</p>
-                        </div>
-                        <div class="flex items-center gap-4 text-xs font-mono text-slate-500 pt-3 border-t border-slate-800">
-                            ${repo.language ? `<span><i class="fas fa-code text-teal-400 mr-1"></i>${repo.language}</span>` : ''}
-                            <span><i class="far fa-star text-yellow-400 mr-1"></i>${repo.stargazers_count}</span>
-                            <span><i class="fas fa-code-branch text-slate-400 mr-1"></i>${repo.forks_count}</span>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (err) {
-                ghContainer.innerHTML = `<p class="col-span-3 text-slate-500 text-center">Unable to load GitHub repositories right now.</p>`;
-            }
-        }
-
-        fetchGitHubRepos();
-    </script>
+        setTimeout(() => {
+          submitBtn.classList.add('sent');
+          submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
+          
+          setTimeout(() => {
+            form.reset();
+            submitBtn.classList.remove('sent');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            submitBtn.disabled = false;
+          }, 3000);
+        }, 1200);
+      });
+    })();
+  </script>
 </body>
 </html>
