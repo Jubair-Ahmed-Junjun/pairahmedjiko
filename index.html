@@ -6,12 +6,9 @@
   <meta name="description" content="Pair Ahmed Jiko - Clinical Biochemist, Molecular Biologist, and Researcher. Portfolio showcasing publications, projects, and professional experience.">
   <title>Pair Ahmed Jiko · Portfolio</title>
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
@@ -41,6 +38,10 @@
       --success-soft: #ecfdf5;
       --success-border: #a7f3d0;
       --success-text: #047857;
+      --purple: #7c3aed;
+      --purple-soft: #f3e8ff;
+      --amber: #f59e0b;
+      --amber-soft: #fef3c7;
       --error: #ef4444;
       
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -68,15 +69,13 @@
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+      --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.12);
 
       --transition-fast: 0.2s ease;
       --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
       font-family: var(--font-body);
@@ -112,7 +111,7 @@
     }
 
     /* ==========================================================================
-       2. TOP NAV
+       2. TOP NAVIGATION
        ========================================================================== */
     .top-bar {
       display: flex;
@@ -124,6 +123,7 @@
       padding-bottom: var(--space-md);
       border-bottom: 1px solid var(--border-light);
       position: relative;
+      z-index: 100;
     }
 
     .top-nav {
@@ -151,67 +151,210 @@
     .top-nav > a:hover,
     .top-nav .dropdown > a:hover { color: var(--accent); }
 
+    /* ==========================================================================
+       3. FANCY RESEARCH PROJECTS DROPDOWN
+       ========================================================================== */
     .dropdown { position: relative; display: inline-block; }
+
+    .dropdown > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      position: relative;
+    }
 
     .dropdown > a::after {
       content: '\f107';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       font-size: 0.7rem;
-      transition: transform var(--transition-fast);
-      margin-left: 0.2rem;
+      transition: transform var(--transition-base);
+      margin-left: 0.1rem;
     }
 
     .dropdown:hover > a::after { transform: rotate(180deg); }
 
     .dropdown-menu {
       position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 230px;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: 380px;
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      padding: 0.5rem 0;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      padding: 0.75rem;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(10px);
       transition: all var(--transition-base);
-      z-index: 100;
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-left: 1px solid var(--border-light);
+      border-top: 1px solid var(--border-light);
     }
 
     .dropdown:hover .dropdown-menu {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
 
+    .dropdown-section { padding: 0.4rem 0; }
+
+    .dropdown-section + .dropdown-section {
+      border-top: 1px solid var(--border-light);
+      margin-top: 0.4rem;
+      padding-top: 0.6rem;
+    }
+
+    .dropdown-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.4rem 0.8rem 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dropdown-label i { font-size: 0.65rem; color: var(--accent); }
+
     .dropdown-menu a {
-      display: block;
-      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: var(--radius-sm);
       font-size: var(--fs-sm);
       color: var(--text-secondary);
       text-decoration: none;
       transition: all var(--transition-fast);
       white-space: nowrap;
+      position: relative;
     }
 
     .dropdown-menu a:hover {
       background: var(--accent-soft);
       color: var(--accent);
-      padding-left: 1.5rem;
+      padding-left: 1rem;
     }
 
-    .dropdown-menu a i {
-      margin-right: 0.6rem;
-      width: 1rem;
-      color: var(--text-muted);
-      font-size: 0.8rem;
+    .dropdown-menu a .icon-box {
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all var(--transition-fast);
+    }
+
+    .dropdown-menu a:hover .icon-box {
+      background: var(--accent);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .dropdown-menu a .link-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      flex: 1;
+    }
+
+    .dropdown-menu a .link-text strong {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: var(--fs-sm);
       transition: color var(--transition-fast);
     }
 
-    .dropdown-menu a:hover i { color: var(--accent); }
+    .dropdown-menu a:hover .link-text strong { color: var(--accent); }
+
+    .dropdown-menu a .link-text small {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .dropdown-menu a .count-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      margin-left: auto;
+    }
+
+    .dropdown-menu a:hover .count-badge {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .dropdown-menu a.special-item .icon-box {
+      background: var(--success-soft);
+      color: var(--success-text);
+    }
+
+    .dropdown-menu a.special-item:hover {
+      background: var(--success-soft);
+      color: var(--success-text);
+    }
+
+    .dropdown-menu a.special-item:hover .icon-box {
+      background: var(--success);
+      color: #ffffff;
+    }
+
+    .dropdown-menu a.special-item:hover .link-text strong {
+      color: var(--success-text);
+    }
+
+    .dropdown-menu a.special-item:hover .count-badge {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    .pulse-dot.small { width: 7px; height: 7px; }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
 
     .dropdown-toggle { display: none; }
 
@@ -232,15 +375,18 @@
     @media (max-width: 768px) {
       .dropdown-menu {
         position: static;
+        transform: none;
         opacity: 1;
         visibility: visible;
-        transform: none;
         box-shadow: none;
         border: none;
-        padding-left: 1rem;
+        padding: 0.5rem 0 0 1rem;
         display: none;
         background: transparent;
+        min-width: 100%;
+        left: auto;
       }
+      .dropdown-menu::before { display: none; }
       .dropdown.open .dropdown-menu { display: block; }
       .dropdown > a::after { display: none; }
       .dropdown-toggle {
@@ -250,10 +396,17 @@
         color: var(--text-muted);
         cursor: pointer;
       }
+      .dropdown-section + .dropdown-section {
+        border-top: none;
+        margin-top: 0.2rem;
+        padding-top: 0.2rem;
+      }
+      .dropdown-label { padding: 0.4rem 0.4rem 0.3rem; }
+      .dropdown-menu a { padding: 0.5rem 0.4rem; }
     }
 
     /* ==========================================================================
-       3. HERO / BIO
+       4. HERO / BIO
        ========================================================================== */
     .bio-section {
       display: flex;
@@ -309,6 +462,8 @@
       color: var(--text-muted);
       font-weight: 500;
       margin-bottom: var(--space-md);
+      text-align: center;
+      line-height: 1.5;
     }
 
     .bio-social {
@@ -355,7 +510,6 @@
     .bio-text p a { color: var(--accent); font-weight: 500; }
     .bio-text p a:hover { text-decoration: underline; }
 
-    /* CV Action Buttons */
     .cv-actions {
       display: flex;
       flex-wrap: wrap;
@@ -377,6 +531,7 @@
       color: var(--text-primary);
       text-decoration: none;
       transition: all var(--transition-base);
+      cursor: pointer;
     }
 
     .cv-btn i { font-size: 0.95rem; }
@@ -424,7 +579,7 @@
     }
 
     /* ==========================================================================
-       4. SECTIONS & TITLES
+       5. SECTIONS
        ========================================================================== */
     section {
       margin-bottom: var(--space-2xl);
@@ -442,12 +597,49 @@
       display: flex;
       align-items: center;
       gap: var(--space-sm);
+      position: relative;
+      padding-bottom: 0.6rem;
     }
 
-    .section-title i { color: var(--accent); font-size: var(--fs-lg); }
+    .section-title i {
+      color: var(--accent);
+      font-size: var(--fs-lg);
+      background: var(--accent-soft);
+      width: 2.6rem;
+      height: 2.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+    }
+
+    .section-title:hover i {
+      background: var(--accent);
+      color: #ffffff;
+      transform: rotate(-8deg) scale(1.05);
+      box-shadow: 0 0 20px rgba(10, 102, 194, 0.2);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), #60a5fa);
+      border-radius: 3px;
+      animation: widthPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes widthPulse {
+      0%, 100% { width: 60px; }
+      50% { width: 100px; }
+    }
 
     /* ==========================================================================
-       5. GRID SYSTEM
+       6. GRID & CARDS
        ========================================================================== */
     .grid-2 {
       display: grid;
@@ -461,9 +653,6 @@
       gap: var(--space-lg);
     }
 
-    /* ==========================================================================
-       6. CARDS
-       ========================================================================== */
     .card {
       background: var(--bg-surface);
       border: 1px solid var(--border-light);
@@ -473,8 +662,6 @@
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
-      opacity: 1;
-      transform: scale(1);
     }
 
     .card.hidden { display: none; }
@@ -544,7 +731,6 @@
       font-weight: 700;
     }
 
-    /* Card Header (holds status badge + meta) */
     .card-header {
       display: flex;
       flex-wrap: wrap;
@@ -553,7 +739,6 @@
       margin-bottom: 0.4rem;
     }
 
-    /* Status badge for ongoing work */
     .status-badge {
       display: inline-flex;
       align-items: center;
@@ -566,33 +751,6 @@
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-    }
-
-    /* Pulsing dot */
-    .pulse-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      margin-right: 0.4rem;
-      vertical-align: middle;
-      position: relative;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-      animation: pulse 2s infinite;
-    }
-
-    .status-badge .pulse-dot,
-    .filter-btn .pulse-dot {
-      width: 7px;
-      height: 7px;
-      margin-right: 0.4rem;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
     /* ==========================================================================
@@ -688,36 +846,409 @@
     }
 
     /* ==========================================================================
-       9. SKILLS
+       9. FANCY CLINICAL TRIALS
        ========================================================================== */
-    .skill-tags {
+    .ctrials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .ctrial-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: all var(--transition-base);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ctrial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), #60a5fa, var(--purple));
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .ctrial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .ctrial-card:hover::before { opacity: 1; }
+
+    .ctrial-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+      pointer-events: none;
+    }
+
+    .ctrial-card:hover::after { opacity: 1; }
+
+    .ctrial-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .ctrial-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      box-shadow: 0 6px 16px rgba(10, 102, 194, 0.25);
+      flex-shrink: 0;
+      transition: transform var(--transition-base);
+    }
+
+    .ctrial-card:hover .ctrial-icon {
+      transform: scale(1.08) rotate(-5deg);
+    }
+
+    .ctrial-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .ctrial-header-text .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--success-text);
+      background: var(--success-soft);
+      border: 1px solid var(--success-border);
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      align-self: flex-start;
+    }
+
+    .ctrial-header-text h4 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .ctrial-body {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .ctrial-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .ctrial-footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px dashed var(--border-light);
+    }
+
+    .ctrial-id {
+      font-family: 'Courier New', monospace;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(10, 102, 194, 0.15);
+      letter-spacing: 0.03em;
+    }
+
+    .ctrial-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .ctrial-link:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(10, 102, 194, 0.25);
+      text-decoration: none;
+    }
+
+    .ctrial-link i {
+      font-size: 0.75rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .ctrial-link:hover i { transform: translateX(3px); }
+
+    /* ==========================================================================
+       10. FANCY SKILLS & COMPETENCES
+       ========================================================================== */
+    .skills-panels {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 750px) {
+      .skills-panels { grid-template-columns: 1fr; }
+    }
+
+    .skill-panel {
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-surface) 100%);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      transition: all var(--transition-base);
+      overflow: hidden;
+    }
+
+    .skill-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), #60a5fa);
+    }
+
+    .skill-panel.alt::before {
+      background: linear-gradient(90deg, var(--purple), #c084fc);
+    }
+
+    .skill-panel.alt-2::before {
+      background: linear-gradient(90deg, var(--amber), #fbbf24);
+    }
+
+    .skill-panel:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
+    }
+
+    .skill-panel-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .skill-panel-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: all var(--transition-base);
+    }
+
+    .skill-panel.alt .skill-panel-icon {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .skill-panel.alt-2 .skill-panel-icon {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .skill-panel:hover .skill-panel-icon {
+      transform: rotate(-8deg) scale(1.05);
+    }
+
+    .skill-panel-header h4 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .skill-panel-header small {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .skill-cloud {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
+      gap: 0.55rem;
     }
 
-    .skill-tags span {
-      background: var(--bg-surface);
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: var(--fs-xs);
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.95rem;
+      background: #ffffff;
       border: 1px solid var(--border-light);
-      transition: all var(--transition-fast);
+      border-radius: 30px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-base);
       cursor: default;
+      position: relative;
+      overflow: hidden;
     }
 
-    .skill-tags span:hover {
-      background: var(--accent-soft);
-      border-color: var(--accent);
+    .skill-chip i {
+      font-size: 0.75rem;
       color: var(--accent);
-      transform: translateY(-2px);
+      transition: color var(--transition-fast);
+    }
+
+    .skill-chip:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(10, 102, 194, 0.25);
+    }
+
+    .skill-chip:hover i { color: #ffffff; }
+
+    .skill-panel.alt .skill-chip i { color: var(--purple); }
+
+    .skill-panel.alt .skill-chip:hover {
+      background: var(--purple);
+      border-color: var(--purple);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+    }
+
+    .skill-panel.alt .skill-chip:hover i { color: #ffffff; }
+
+    .reviewer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .reviewer-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+    }
+
+    .reviewer-card:hover {
+      border-color: var(--amber);
+      transform: translateX(5px);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
+    }
+
+    .reviewer-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      background: var(--amber-soft);
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .reviewer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .reviewer-info strong {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .reviewer-info small {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .reviewer-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--amber);
+      background: var(--amber-soft);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      flex-shrink: 0;
     }
 
     /* ==========================================================================
-       10. TRAINING
+       11. TRAINING
        ========================================================================== */
     .training-list {
       display: flex;
@@ -765,7 +1296,7 @@
     }
 
     /* ==========================================================================
-       11. CONTACT FORM
+       12. CONTACT FORM
        ========================================================================== */
     .contact-form-wrapper {
       background: var(--bg-surface);
@@ -915,7 +1446,7 @@
     }
 
     /* ==========================================================================
-       12. FOOTER
+       13. FOOTER
        ========================================================================== */
     .footer-contact {
       padding-top: var(--space-xl);
@@ -951,7 +1482,7 @@
     }
 
     /* ==========================================================================
-       13. SCROLL ANIMATIONS
+       14. SCROLL ANIMATIONS
        ========================================================================== */
     .fade-in {
       opacity: 0;
@@ -966,7 +1497,118 @@
     }
 
     /* ==========================================================================
-       14. RESPONSIVE
+       15. CV MODAL VIEWER
+       ========================================================================== */
+    .cv-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
+    }
+
+    .cv-modal.active { opacity: 1; visibility: visible; }
+
+    .cv-modal-inner {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 900px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.96);
+      transition: transform var(--transition-base);
+    }
+
+    .cv-modal.active .cv-modal-inner { transform: scale(1); }
+
+    .cv-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg-surface);
+    }
+
+    .cv-modal-header h3 {
+      font-family: var(--font-heading);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cv-modal-header h3 i { color: var(--accent); }
+
+    .cv-modal-close {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .cv-modal-close:hover {
+      background: var(--error);
+      color: #ffffff;
+      border-color: var(--error);
+      transform: rotate(90deg);
+    }
+
+    .cv-modal-body {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      background: #f1f5f9;
+      min-height: 60vh;
+    }
+
+    .cv-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      min-height: 70vh;
+    }
+
+    .cv-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: var(--space-md) var(--space-lg);
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-surface);
+    }
+
+    @media (max-width: 650px) {
+      .cv-modal-inner { max-height: 95vh; }
+      .cv-modal-body iframe { min-height: 60vh; }
+      .cv-modal-footer { flex-direction: column; }
+      .cv-modal-footer .cv-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ==========================================================================
+       16. RESPONSIVE
        ========================================================================== */
     @media (max-width: 480px) {
       .container { padding: var(--space-md); }
@@ -990,19 +1632,69 @@
       <nav class="top-nav" aria-label="Main navigation">
         <a href="#publications">Publications</a>
         
-        <!-- Research Projects Dropdown -->
         <div class="dropdown" id="researchDropdown">
           <a href="#projects" id="dropdownToggle">
             Research Projects
             <span class="dropdown-toggle">▼</span>
           </a>
           <div class="dropdown-menu">
-            <a href="#projects" data-filter="all"><i class="fas fa-layer-group"></i> All Research</a>
-            <a href="#projects" data-filter="ongoing"><i class="fas fa-spinner"></i> Work in Progress</a>
-            <a href="#projects" data-filter="molecular"><i class="fas fa-dna"></i> Molecular Epidemiology</a>
-            <a href="#projects" data-filter="drug"><i class="fas fa-pills"></i> Drug Discovery & Phytochemistry</a>
-            <a href="#projects" data-filter="amr"><i class="fas fa-bacteria"></i> Antimicrobial Resistance</a>
-            <a href="#projects" data-filter="clinical"><i class="fas fa-heartbeat"></i> Clinical & Public Health</a>
+            
+            <div class="dropdown-section">
+              <div class="dropdown-label"><i class="fas fa-circle" style="color: var(--success);"></i> Status</div>
+              <a href="#projects" data-filter="all">
+                <span class="icon-box"><i class="fas fa-layer-group"></i></span>
+                <span class="link-text">
+                  <strong>All Research</strong>
+                  <small>View everything</small>
+                </span>
+                <span class="count-badge">12</span>
+              </a>
+              <a href="#projects" data-filter="ongoing" class="special-item">
+                <span class="icon-box"><span class="pulse-dot small"></span></span>
+                <span class="link-text">
+                  <strong>Work in Progress</strong>
+                  <small>Ongoing research</small>
+                </span>
+                <span class="count-badge">6</span>
+              </a>
+            </div>
+
+            <div class="dropdown-section">
+              <div class="dropdown-label"><i class="fas fa-tags"></i> Topics</div>
+              <a href="#projects" data-filter="molecular">
+                <span class="icon-box"><i class="fas fa-dna"></i></span>
+                <span class="link-text">
+                  <strong>Molecular Epidemiology</strong>
+                  <small>Dengue, genetics, hemoglobin</small>
+                </span>
+                <span class="count-badge">3</span>
+              </a>
+              <a href="#projects" data-filter="drug">
+                <span class="icon-box"><i class="fas fa-pills"></i></span>
+                <span class="link-text">
+                  <strong>Drug Discovery & Phytochemistry</strong>
+                  <small>Bioactive compounds</small>
+                </span>
+                <span class="count-badge">3</span>
+              </a>
+              <a href="#projects" data-filter="amr">
+                <span class="icon-box"><i class="fas fa-bacteria"></i></span>
+                <span class="link-text">
+                  <strong>Antimicrobial Resistance</strong>
+                  <small>Carbapenemase, integrons</small>
+                </span>
+                <span class="count-badge">2</span>
+              </a>
+              <a href="#projects" data-filter="clinical">
+                <span class="icon-box"><i class="fas fa-heartbeat"></i></span>
+                <span class="link-text">
+                  <strong>Clinical & Public Health</strong>
+                  <small>Biomarkers, epidemiology</small>
+                </span>
+                <span class="count-badge">4</span>
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -1023,33 +1715,36 @@
           <img src="https://i.ibb.co/ymnBq0Tz/your-image.jpg" alt="Pair Ahmed Jiko" loading="eager">
         </div>
         <h3>Pair Ahmed Jiko</h3>
-        <div class="role">Lab In-Charge · Biochemist</div>
+        <div class="role">
+          Lab In-Charge (Biochemist)<br>
+          Research Assistant | Department of Chemistry (CUET)
+        </div>
         <div class="bio-social">
           <a href="https://www.linkedin.com/in/pair-ahmed-jiko-3b3216190/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://www.researchgate.net/profile/Pair-Jiko" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
           <a href="https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-          <a href="#" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-          <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://orcid.org/0009-0008-2375-9729" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+          <a href="https://www.facebook.com/jiko.iht" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://techbioinsider.blogspot.com" target="_blank" rel="noopener" title="Blog" aria-label="Blog"><i class="fas fa-blog"></i></a>
         </div>
       </div>
       <div class="bio-text">
         <h2>Biography</h2>
         <p>
-          Clinical Biochemist and biomedical science professional with interdisciplinary academic training in Biochemistry, Chemistry, and Public Health. Experienced in in-vivo and in-vitro research, phytochemical isolation and characterization, molecular diagnostics, and laboratory quality management alongside active involvement in academic teaching, internship supervision and training.
+          I am a cheerful, optimistic, and highly self-motivated person, with a strong commitment to learning, professional growth, and scientific work. I am hardworking, persistent in the face of challenges, and confident in taking responsibility and leadership.
         </p>
         <p>
-          Dedicated and detail-oriented research expert with years of experience conducting comprehensive research across various disciplines. Committed to advancing scientific knowledge, high-quality education, and evidence-based laboratory practice. Seeking advanced research training in molecular and biomedical sciences to develop specialized expertise and contribute to evidence-based investigations of complex biological and health-related questions.
+          Currently, I serve as <strong>Lab In-Charge (Biochemist)</strong> at the <a href="https://dacbd.org/ustc-medical-college/" target="_blank" rel="noopener">Institute of Applied Health Sciences Hospital – USTC</a> and as a <strong>Research Assistant</strong> at <a href="https://cuet.ac.bd/" target="_blank" rel="noopener">CUET</a>. My current research encompasses in-vivo and in-vitro studies, with particular interests in cancer biology, genetics, immunology, and molecular biology.
         </p>
         <p>
-          Currently Lab In-Charge (Biochemist) at the <a href="https://iahs.ac.bd/">Institute of Applied Health Sciences Hospital–USTC</a>, and Research Assistant at <a href="#">CUET</a>. My research explores the intersection of clinical chemistry, molecular biology, and public health, with a focus on antimicrobial resistance, dengue epidemiology, and bioactive compound discovery.
+          I seek to investigate complex biological questions and contribute to evidence-based advances in biomedical science through interdisciplinary research integrating biology, chemistry, and clinical science.
         </p>
 
-        <!-- CV ACTION BUTTONS -->
         <div class="cv-actions">
-          <a href="Pair-Ahmed-Jiko-CV.pdf" target="_blank" rel="noopener" class="cv-btn view-cv">
+          <button type="button" class="cv-btn view-cv" id="openCvModal">
             <i class="fas fa-file-pdf"></i> View CV
-          </a>
-          <a href="Pair-Ahmed-Jiko-CV.pdf" download class="cv-btn download-cv">
+          </button>
+          <a href="CV_Pair Ahmed Jiko (2026).pdf" download class="cv-btn download-cv">
             <i class="fas fa-download"></i> Download CV
           </a>
         </div>
@@ -1135,8 +1830,8 @@
         </article>
         <article class="card">
           <div class="meta">2024 – Present</div>
-          <h4>Project Coordinator and Co-PI</h4>
-          <div class="sub">Bangladesh Bioscience Research Group · USTC</div>
+          <h4>Lead Coordinator and Co-PI</h4>
+          <div class="sub">Bangladesh Bioscience Research Group (BBRG) · USTC</div>
           <ul>
             <li>Supervised and mentored over 32+ undergraduate and 17+ postgraduate students.</li>
             <li>Coordinated multidisciplinary research activities with 10+ national and international collaborators.</li>
@@ -1180,11 +1875,75 @@
       </div>
     </section>
 
-    <!-- ========== RESEARCH & PROJECTS (CATEGORY + STATUS FILTER) ========== -->
+    <!-- ========== FANCY CLINICAL TRIALS ========== -->
+    <section id="clinical-trials" class="fade-in">
+      <h2 class="section-title"><i class="fas fa-microscope"></i> Clinical Trials</h2>
+      <div class="ctrials-grid">
+
+        <article class="ctrial-card">
+          <div class="ctrial-header">
+            <div class="ctrial-icon"><i class="fas fa-flask"></i></div>
+            <div class="ctrial-header-text">
+              <span class="badge"><span class="pulse-dot small"></span> Registered Trial</span>
+              <h4>Clinical Trial Registration</h4>
+            </div>
+          </div>
+          <div class="ctrial-body">
+            <p>Registered at ClinicalTrials.gov — an international registry of publicly and privately supported clinical studies of human participants.</p>
+          </div>
+          <div class="ctrial-footer">
+            <span class="ctrial-id">NCT07089004</span>
+            <a href="https://clinicaltrials.gov/study/NCT07089004" target="_blank" rel="noopener" class="ctrial-link">
+              View Study <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="ctrial-card">
+          <div class="ctrial-header">
+            <div class="ctrial-icon"><i class="fas fa-vials"></i></div>
+            <div class="ctrial-header-text">
+              <span class="badge"><span class="pulse-dot small"></span> Registered Trial</span>
+              <h4>Clinical Trial Registration</h4>
+            </div>
+          </div>
+          <div class="ctrial-body">
+            <p>Registered at ClinicalTrials.gov — an international registry of publicly and privately supported clinical studies of human participants.</p>
+          </div>
+          <div class="ctrial-footer">
+            <span class="ctrial-id">NCT07207551</span>
+            <a href="https://clinicaltrials.gov/study/NCT07207551" target="_blank" rel="noopener" class="ctrial-link">
+              View Study <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="ctrial-card">
+          <div class="ctrial-header">
+            <div class="ctrial-icon"><i class="fas fa-dna"></i></div>
+            <div class="ctrial-header-text">
+              <span class="badge"><span class="pulse-dot small"></span> Registered Trial</span>
+              <h4>Clinical Trial Registration</h4>
+            </div>
+          </div>
+          <div class="ctrial-body">
+            <p>Registered at ClinicalTrials.gov — an international registry of publicly and privately supported clinical studies of human participants.</p>
+          </div>
+          <div class="ctrial-footer">
+            <span class="ctrial-id">NCT07305181</span>
+            <a href="https://clinicaltrials.gov/study/NCT07305181" target="_blank" rel="noopener" class="ctrial-link">
+              View Study <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========== RESEARCH & PROJECTS ========== -->
     <section id="projects" class="fade-in">
       <h2 class="section-title"><i class="fas fa-flask"></i> Research & Projects</h2>
       
-      <!-- Filter Navigation Bar -->
       <div class="filter-nav" id="filterNav">
         <button class="filter-btn active" data-filter="all">All Research</button>
         <button class="filter-btn" data-filter="ongoing"><span class="pulse-dot"></span> Work in Progress</button>
@@ -1194,10 +1953,8 @@
         <button class="filter-btn" data-filter="clinical">Clinical & Public Health</button>
       </div>
 
-      <!-- Project Grid -->
       <div class="grid-3" id="projectGrid">
 
-        <!-- ===== IN PROGRESS / ONGOING RESEARCH ===== -->
         <article class="card ongoing" data-category="molecular" data-status="ongoing">
           <div class="card-header">
             <span class="status-badge"><span class="pulse-dot"></span> In Progress</span>
@@ -1258,7 +2015,6 @@
           <div class="sub">Bangladesh Bioscience Research Group</div>
         </article>
 
-        <!-- ===== COMPLETED RESEARCH ===== -->
         <article class="card" data-category="amr" data-status="completed">
           <div class="card-header">
             <div class="meta">Jun 2023 – Dec 2025</div>
@@ -1358,40 +2114,90 @@
       </div>
     </section>
 
-    <!-- ========== SKILLS ========== -->
+    <!-- ========== FANCY SKILLS & COMPETENCES ========== -->
     <section id="skills" class="fade-in">
       <h2 class="section-title"><i class="fas fa-cogs"></i> Skills & Competences</h2>
-      <div class="grid-2">
-        <div>
-          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-bottom: var(--space-sm); color: var(--text-primary);">Technical & Research</h4>
-          <div class="skill-tags">
-            <span>Clinical Chemistry</span>
-            <span>Molecular Biology</span>
-            <span>Phytochemical Isolation</span>
-            <span>In-vivo & In-vitro Assays</span>
-            <span>Molecular Docking</span>
-            <span>Antimicrobial Resistance</span>
-            <span>ISO 15189:2022</span>
-            <span>SPSS</span>
-            <span>R Programming</span>
-            <span>Python</span>
-            <span>Scientific Writing</span>
-            <span>Project Management</span>
+      
+      <div class="skills-panels">
+
+        <div class="skill-panel">
+          <div class="skill-panel-header">
+            <div class="skill-panel-icon"><i class="fas fa-flask"></i></div>
+            <div>
+              <h4>Technical & Research</h4>
+              <small>Laboratory, molecular, and analytical expertise</small>
+            </div>
+          </div>
+          <div class="skill-cloud">
+            <span class="skill-chip"><i class="fas fa-vial"></i> Clinical Chemistry</span>
+            <span class="skill-chip"><i class="fas fa-dna"></i> Molecular Biology</span>
+            <span class="skill-chip"><i class="fas fa-leaf"></i> Phytochemical Isolation</span>
+            <span class="skill-chip"><i class="fas fa-microscope"></i> In-vivo & In-vitro Assays</span>
+            <span class="skill-chip"><i class="fas fa-cube"></i> Molecular Docking</span>
+            <span class="skill-chip"><i class="fas fa-bacteria"></i> Antimicrobial Resistance</span>
+            <span class="skill-chip"><i class="fas fa-certificate"></i> ISO 15189:2022</span>
+            <span class="skill-chip"><i class="fas fa-chart-bar"></i> SPSS</span>
+            <span class="skill-chip"><i class="fas fa-code"></i> R Programming</span>
+            <span class="skill-chip"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-chip"><i class="fas fa-pen-fancy"></i> Scientific Writing</span>
+            <span class="skill-chip"><i class="fas fa-tasks"></i> Project Management</span>
           </div>
         </div>
-        <div>
-          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-bottom: var(--space-sm); color: var(--text-primary);">Languages</h4>
-          <div class="skill-tags">
-            <span>English (Professional Proficiency)</span>
-            <span>Bengali (Native or Bilingual)</span>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+          
+          <div class="skill-panel alt">
+            <div class="skill-panel-header">
+              <div class="skill-panel-icon"><i class="fas fa-language"></i></div>
+              <div>
+                <h4>Languages</h4>
+                <small>Professional communication</small>
+              </div>
+            </div>
+            <div class="skill-cloud">
+              <span class="skill-chip"><i class="fas fa-flag-usa"></i> English (Professional Proficiency)</span>
+              <span class="skill-chip"><i class="fas fa-flag"></i> Bengali (Native or Bilingual)</span>
+            </div>
           </div>
-          <h4 style="font-size: var(--fs-base); font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm); color: var(--text-primary);">Peer Reviewer</h4>
-          <div class="skill-tags">
-            <span>Annals of Medicine (Wolters Kluwer)</span>
-            <span>eFood (Wiley)</span>
-            <span>Chemistry & Biodiversity (Wiley)</span>
+
+          <div class="skill-panel alt-2">
+            <div class="skill-panel-header">
+              <div class="skill-panel-icon"><i class="fas fa-book-open"></i></div>
+              <div>
+                <h4>Peer Reviewer</h4>
+                <small>Journal review board member</small>
+              </div>
+            </div>
+            <div class="reviewer-list">
+              <div class="reviewer-card">
+                <div class="reviewer-icon"><i class="fas fa-file-medical-alt"></i></div>
+                <div class="reviewer-info">
+                  <strong>Annals of Medicine</strong>
+                  <small>Wolters Kluwer</small>
+                </div>
+                <span class="reviewer-badge">Reviewer</span>
+              </div>
+              <div class="reviewer-card">
+                <div class="reviewer-icon"><i class="fas fa-utensils"></i></div>
+                <div class="reviewer-info">
+                  <strong>eFood</strong>
+                  <small>Wiley</small>
+                </div>
+                <span class="reviewer-badge">Reviewer</span>
+              </div>
+              <div class="reviewer-card">
+                <div class="reviewer-icon"><i class="fas fa-flask"></i></div>
+                <div class="reviewer-info">
+                  <strong>Chemistry & Biodiversity</strong>
+                  <small>Wiley</small>
+                </div>
+                <span class="reviewer-badge">Reviewer</span>
+              </div>
+            </div>
           </div>
+
         </div>
+
       </div>
     </section>
 
@@ -1409,18 +2215,18 @@
           </div>
 
           <div class="form-group">
-            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane.smith@example.com" required>
+            <label for="email"><i class="fas fa-envelope"></i> Your Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
             <i class="fas fa-check-circle validation-icon"></i>
           </div>
 
-          <div class="form-group">
+          <div class="form-group full-width">
             <label for="phone"><i class="fas fa-phone-alt"></i> Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+880 1814-028871" required>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
             <i class="fas fa-check-circle validation-icon"></i>
           </div>
 
-          <div class="form-group">
+          <div class="form-group full-width">
             <label for="subject"><i class="fas fa-tag"></i> Subject</label>
             <select id="subject" name="subject" required>
               <option value="" disabled selected>Select a subject</option>
@@ -1450,26 +2256,44 @@
     <footer class="footer-contact">
       <div class="contact-item">
         <i class="fas fa-envelope"></i>
-        <a href="mailto:u20mschem009@student.cuet.ac.bd">u20mschem009@student.cuet.ac.bd</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-phone-alt"></i>
-        <span>+880 1814-028871</span>
+        <a href="mailto:pairahmed.bio@gmail.com">pairahmed.bio@gmail.com</a>
       </div>
       <div class="contact-item">
         <i class="fas fa-map-pin"></i>
-        <span>Pahartoli, Raozan, Chattogram – 4349, Bangladesh</span>
+        <span>1534/B; Sayed Shah Road; Chawkbazar; Chattogram 4203; Bangladesh</span>
       </div>
     </footer>
 
   </div>
 
+  <!-- ========== CV MODAL VIEWER ========== -->
+  <div class="cv-modal" id="cvModal" role="dialog" aria-modal="true" aria-label="CV Viewer">
+    <div class="cv-modal-inner">
+      <div class="cv-modal-header">
+        <h3><i class="fas fa-file-pdf"></i> Curriculum Vitae</h3>
+        <button type="button" class="cv-modal-close" id="closeCvModal" aria-label="Close CV viewer">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="cv-modal-body">
+        <iframe src="CV_Pair Ahmed Jiko (2026).pdf" title="Pair Ahmed Jiko CV"></iframe>
+      </div>
+      <div class="cv-modal-footer">
+        <a href="CV_Pair Ahmed Jiko (2026).pdf" download class="cv-btn download-cv">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <button type="button" class="cv-btn view-cv" id="closeCvModalFooter">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== JAVASCRIPT ========== -->
   <script>
-    // 1. Scroll Reveal Animation
+    // 1. Scroll Reveal
     (function() {
       const fadeElements = document.querySelectorAll('.fade-in');
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1477,26 +2301,20 @@
             observer.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
       fadeElements.forEach(el => observer.observe(el));
-
       if (!('IntersectionObserver' in window)) {
         fadeElements.forEach(el => el.classList.add('visible'));
       }
     })();
 
-    // 2. Project Filtering Logic (supports category + "ongoing" status)
+    // 2. Project Filtering
     (function() {
       const filterBtns = document.querySelectorAll('.filter-btn');
       const projectCards = document.querySelectorAll('#projectGrid .card');
       const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
 
       function applyFilter(filterValue) {
-        // Update active button state
         filterBtns.forEach(b => {
           if (b.getAttribute('data-filter') === filterValue) {
             b.classList.add('active');
@@ -1505,7 +2323,6 @@
           }
         });
 
-        // Filter cards by category OR status
         projectCards.forEach(card => {
           const category = card.getAttribute('data-category');
           const status = card.getAttribute('data-status');
@@ -1515,58 +2332,39 @@
           card.style.animation = 'fadeInUp 0.5s ease forwards';
 
           let show = false;
-          if (filterValue === 'all') {
-            show = true;
-          } else if (filterValue === 'ongoing') {
-            show = (status === 'ongoing');
-          } else {
-            show = (category === filterValue);
-          }
+          if (filterValue === 'all') show = true;
+          else if (filterValue === 'ongoing') show = (status === 'ongoing');
+          else show = (category === filterValue);
 
-          if (show) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
+          if (show) card.classList.remove('hidden');
+          else card.classList.add('hidden');
         });
       }
 
       filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          applyFilter(btn.getAttribute('data-filter'));
-        });
+        btn.addEventListener('click', () => applyFilter(btn.getAttribute('data-filter')));
       });
 
       dropdownLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           const filterValue = link.getAttribute('data-filter');
-          
           applyFilter(filterValue);
-          
           const target = document.querySelector('#projects');
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           const dropdown = document.getElementById('researchDropdown');
-          if (dropdown) {
-            dropdown.classList.remove('open');
-          }
+          if (dropdown) dropdown.classList.remove('open');
         });
       });
     })();
 
-    // 3. Mobile Dropdown Toggle
+    // 3. Mobile Dropdown
     (function() {
       const dropdown = document.getElementById('researchDropdown');
       const toggle = document.getElementById('dropdownToggle');
-      
       if (!dropdown || !toggle) return;
 
-      function isMobile() {
-        return window.innerWidth <= 768;
-      }
+      function isMobile() { return window.innerWidth <= 768; }
 
       toggle.addEventListener('click', (e) => {
         if (isMobile()) {
@@ -1582,50 +2380,39 @@
       });
 
       window.addEventListener('resize', () => {
-        if (!isMobile()) {
-          dropdown.classList.remove('open');
-        }
+        if (!isMobile()) dropdown.classList.remove('open');
       });
     })();
 
-    // 4. Smooth Scroll for all anchor links
+    // 4. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         if (this.closest('.dropdown-menu')) return;
-        
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
-    // 5. Contact Form Submission (Simulated)
+    // 5. Contact Form
     (function() {
       const form = document.getElementById('contactForm');
       const submitBtn = document.getElementById('submitBtn');
-
       if (!form || !submitBtn) return;
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-
         if (!data.name || !data.email || !data.phone || !data.subject || !data.message) {
           alert('Please fill in all fields before submitting.');
           return;
         }
-
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
-
         setTimeout(() => {
           submitBtn.classList.add('sent');
           submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
-          
           setTimeout(() => {
             form.reset();
             submitBtn.classList.remove('sent');
@@ -1633,6 +2420,39 @@
             submitBtn.disabled = false;
           }, 3000);
         }, 1200);
+      });
+    })();
+
+    // 6. CV Modal Viewer
+    (function() {
+      const modal = document.getElementById('cvModal');
+      const openBtn = document.getElementById('openCvModal');
+      const closeBtn = document.getElementById('closeCvModal');
+      const closeBtnFooter = document.getElementById('closeCvModalFooter');
+      if (!modal || !openBtn) return;
+
+      function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (closeBtnFooter) closeBtnFooter.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
       });
     })();
   </script>
