@@ -1,17 +1,15 @@
-name: Auto-Update Google Scholar Data
+name: Auto-Update Scholar & ResearchGate Data
 
 on:
   schedule:
-    # Runs automatically every day at 00:00 UTC
     - cron: '0 0 * * *'
-  # Also lets you trigger an update manually with one click in GitHub
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update-scholar:
+  update-profiles:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,48 +20,119 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install scholarly library
-        run: pip install scholarly
+      - name: Install dependencies
+        run: pip install scholarly requests beautifulsoup4
 
-      - name: Fetch Google Scholar profile
+      - name: Fetch Google Scholar & ResearchGate data
         run: |
           python -c "
           import json
+          import os
+          import re
+          import requests
+          from bs4 import BeautifulSoup
           from scholarly import scholarly
 
-          author = scholarly.search_author_id('xTO_1HwAAAAJ')
-          author = scholarly.fill(author, sections=['basics', 'indices', 'publications'])
+          SCHOLAR_ID = 'xTO_1HwAAAAJ'
+          RG_SLUG = 'Pair-Jiko'
+          EXCLUDED_KEYWORDS = ['erratum', 'corrigendum', 'retraction']
 
-          pubs = []
-          for p in author.get('publications', []):
-              bib = p.get('bib', {})
-              citation_str = bib.get('citation', '')
-              title_str = bib.get('title', '')
-              is_preprint = any(k in citation_str.lower() for k in ['biorxiv', 'ssrn', 'research square', 'preprint'])
-              is_phytochem = any(k in title_str.lower() for k in ['extract', 'mucuna', 'ficus', 'shirakiopsis', 'swintonia', 'herbal', 'taro', 'ginger'])
+          existing = {}
+          if os.path.exists('scholar_data.json'):
+              with open('scholar_data.json', 'r', encoding='utf-8') as f:
+                  try:
+                      existing = json.load(f)
+                  except Exception:
+                      existing = {}
 
-              pubs.append({
-                  'title': title_str,
-                  'authors': bib.get('author', ''),
-                  'venue': citation_str,
-                  'year': int(bib.get('pub_year', 2026)) if str(bib.get('pub_year', '')).isdigit() else 2026,
-                  'citations': p.get('num_citations', 0),
-                  'type': 'preprint' if is_preprint else 'journal',
-                  'categories': ['preprint' if is_preprint else 'journal', 'phytochem' if is_phytochem else 'clinical'],
-                  'doiUrl': 'https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en',
-                  'doiText': citation_str or 'Google Scholar Indexed',
-                  'summary': 'Automatically synced from Google Scholar profile.'
-              })
+          citations = existing.get('citations', 37)
+          h_index = existing.get('h_index', 3)
+          i10_index = existing.get('i10_index', 1)
+          pubs = existing.get('publications', [])
 
-          data = {
-              'citations': author.get('citedby', 37),
-              'h_index': author.get('hindex', 3),
-              'i10_index': author.get('i10index', 1),
+          try:
+              author = scholarly.search_author_id(SCHOLAR_ID)
+              author = scholarly.fill(author, sections=['basics', 'indices', 'publications'])
+              citations = author.get('citedby', citations)
+              h_index = author.get('hindex', h_index)
+              i10_index = author.get('i10index', i10_index)
+
+              fetched_pubs = []
+              seen_titles = set()
+
+              for p in author.get('publications', []):
+                  bib = p.get('bib', {})
+                  title_str = (bib.get('title') or '').strip()
+                  if not title_str:
+                      continue
+
+                  norm_title = re.sub(r'[^a-z0-9]', '', title_str.lower())
+                  if any(bad in title_str.lower() for bad in EXCLUDED_KEYWORDS):
+                      continue
+                  if norm_title[:40] in seen_titles:
+                      continue
+                  seen_titles.add(norm_title[:40])
+
+                  citation_str = bib.get('citation', '')
+                  is_preprint = any(k in citation_str.lower() for k in ['biorxiv', 'ssrn', 'research square', 'preprint'])
+                  is_phytochem = any(k in title_str.lower() for k in ['extract', 'mucuna', 'ficus', 'shirakiopsis', 'swintonia', 'herbal', 'taro', 'ginger'])
+                  year_val = int(bib.get('pub_year', 2026)) if str(bib.get('pub_year', '')).isdigit() else 2026
+
+                  fetched_pubs.append({
+                      'title': title_str,
+                      'authors': bib.get('author', ''),
+                      'venue': citation_str,
+                      'year': year_val,
+                      'citations': p.get('num_citations', 0),
+                      'type': 'preprint' if is_preprint else 'journal',
+                      'categories': ['preprint' if is_preprint else 'journal', 'phytochem' if is_phytochem else 'clinical'],
+                      'doiUrl': f'https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en',
+                      'doiText': citation_str or 'Google Scholar Indexed',
+                      'summary': 'Synced from Google Scholar profile.'
+                  })
+
+              if fetched_pubs:
+                  pubs = fetched_pubs
+          except Exception as e:
+              print('Google Scholar fetch notice:', e)
+
+          rg_data = existing.get('researchgate', {
+              'profile': f'https://www.researchgate.net/profile/{RG_SLUG}',
+              'works': len(pubs),
+              'full_texts': '2+',
+              'status': 'fallback'
+          })
+
+          try:
+              headers = {
+                  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+                  'Accept-Language': 'en-US,en;q=0.9'
+              }
+              resp = requests.get(f'https://www.researchgate.net/profile/{RG_SLUG}', headers=headers, timeout=15)
+              if resp.status_code == 200:
+                  soup = BeautifulSoup(resp.text, 'html.parser')
+                  meta_desc = soup.find('meta', {'name': 'description'})
+                  desc_text = meta_desc.get('content', '') if meta_desc else ''
+                  match = re.search(r'(\d+)\s+publications?', desc_text, re.I)
+                  rg_data = {
+                      'profile': f'https://www.researchgate.net/profile/{RG_SLUG}',
+                      'works': int(match.group(1)) if match else len(pubs),
+                      'full_texts': rg_data.get('full_texts', '2+'),
+                      'status': 'synced'
+                  }
+          except Exception as e:
+              print('ResearchGate fetch notice:', e)
+
+          output = {
+              'citations': citations,
+              'h_index': h_index,
+              'i10_index': i10_index,
+              'researchgate': rg_data,
               'publications': pubs
           }
 
           with open('scholar_data.json', 'w', encoding='utf-8') as f:
-              json.dump(data, f, indent=2, ensure_ascii=False)
+              json.dump(output, f, indent=2, ensure_ascii=False)
           "
 
       - name: Commit and push updated data
@@ -71,5 +140,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add scholar_data.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: auto-update Google Scholar metrics & publications"
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: sync Google Scholar & ResearchGate data"
           git push
