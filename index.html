@@ -1924,78 +1924,118 @@
       });
     }
 
+    // async function syncNewPublications() {
+    //   const btn = document.getElementById('syncScholarBtn');
+    //   const icon = document.getElementById('syncIcon');
+    //   const banner = document.getElementById('syncStatusBanner');
+
+    //   icon.classList.add('fa-spin');
+    //   btn.disabled = true;
+    //   banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border accent-soft-badge flex items-center justify-between';
+    //   banner.innerHTML = `<span><i class="fas fa-satellite-dish mr-1.5"></i>Syncing with scholar_data.json &amp; ORCID (0009-0008-2375-9729)...</span>`;
+    //   banner.classList.remove('hidden');
+
+    //   try {
+    //     await loadScholarJson();
+
+    //     const response = await fetch('https://api.openalex.org/works?filter=author.orcid:0009-0008-2375-9729&sort=publication_year:desc&per-page=25');
+    //     const data = await response.json();
+
+    //     let newlyAdded = 0;
+
+    //     if (data && Array.isArray(data.results)) {
+    //       data.results.forEach(work => {
+    //         if (!work.title) return;
+    //         const normTitle = work.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+    //         const exists = publicationsData.some(p => p.title.toLowerCase().replace(/[^a-z0-9]/g, '').includes(normTitle.slice(0, 35)));
+
+    //         if (!exists) {
+    //           newlyAdded++;
+    //           const authorsList = (work.authorships || []).map(a => a.author?.display_name).filter(Boolean).join(', ') || 'Pair Ahmed Jiko et al.';
+    //           const venueName = work.primary_location?.source?.display_name || 'Peer-Reviewed / Indexed Publication';
+    //           const isPreprint = work.type === 'preprint';
+
+    //           publicationsData.unshift({
+    //             title: work.title,
+    //             authors: authorsList,
+    //             venue: venueName,
+    //             year: work.publication_year || 2026,
+    //             citations: work.cited_by_count || 0,
+    //             type: isPreprint ? 'preprint' : 'journal',
+    //             categories: [isPreprint ? 'preprint' : 'journal', 'clinical'],
+    //             doiUrl: work.doi || 'https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en',
+    //             doiText: work.doi ? work.doi.replace('https://doi.org/', 'DOI: ') : 'Auto-Synced via OpenAlex',
+    //             summary: `Automatically indexed work (${work.publication_year || 2026}) authored by ${authorsList} in ${venueName}.`
+    //           });
+    //         }
+    //       });
+    //     }
+
+    //     renderPublications(currentCategory);
+
+    //     const pubContent = document.getElementById('pubContent');
+    //     const pubBtn = document.getElementById('pubExpandBtn');
+    //     if (pubContent.classList.contains('hidden')) {
+    //       pubContent.classList.remove('hidden');
+    //       pubBtn.innerHTML = '<i class="fas fa-chevron-up accent-text"></i> <span>Collapse Publications</span>';
+    //     }
+
+    //     const totalCitations = document.getElementById('metricCitations').textContent;
+    //     const hIndex = document.getElementById('metricHIndex').textContent;
+
+    //     banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-700 flex items-center justify-between';
+    //     banner.innerHTML = `
+    //       <span><i class="fas fa-check-circle mr-1.5"></i><strong>Sync Complete:</strong> ${newlyAdded > 0 ? newlyAdded + ' new paper(s) added! ' : ''}Showing ${publicationsData.length} publications (${totalCitations} Citations · h-index ${hIndex}).</span>
+    //       <a href="https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en" target="_blank" class="underline font-semibold">Google Scholar ↗</a>
+    //     `;
+    //   } catch (err) {
+    //     banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-amber-500/10 border-amber-500/30 text-amber-700 flex items-center justify-between';
+    //     banner.innerHTML = `<span><i class="fas fa-info-circle mr-1.5"></i>Showing ${publicationsData.length} indexed papers.</span>`;
+    //   } finally {
+    //     icon.classList.remove('fa-spin');
+    //     btn.disabled = false;
+    //   }
+    // }
+
     async function syncNewPublications() {
-      const btn = document.getElementById('syncScholarBtn');
-      const icon = document.getElementById('syncIcon');
-      const banner = document.getElementById('syncStatusBanner');
+  const btn = document.getElementById('syncScholarBtn');
+  const icon = document.getElementById('syncIcon');
+  const banner = document.getElementById('syncStatusBanner');
 
-      icon.classList.add('fa-spin');
-      btn.disabled = true;
-      banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border accent-soft-badge flex items-center justify-between';
-      banner.innerHTML = `<span><i class="fas fa-satellite-dish mr-1.5"></i>Syncing with scholar_data.json &amp; ORCID (0009-0008-2375-9729)...</span>`;
-      banner.classList.remove('hidden');
+  icon.classList.add('fa-spin');
+  btn.disabled = true;
+  banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border accent-soft-badge flex items-center justify-between';
+  banner.innerHTML = `<span><i class="fas fa-satellite-dish mr-1.5"></i>Syncing Google Scholar &amp; ResearchGate data from scholar_data.json...</span>`;
+  banner.classList.remove('hidden');
 
-      try {
-        await loadScholarJson();
+  try {
+    await loadScholarJson();
+    renderPublications(currentCategory);
 
-        const response = await fetch('https://api.openalex.org/works?filter=author.orcid:0009-0008-2375-9729&sort=publication_year:desc&per-page=25');
-        const data = await response.json();
-
-        let newlyAdded = 0;
-
-        if (data && Array.isArray(data.results)) {
-          data.results.forEach(work => {
-            if (!work.title) return;
-            const normTitle = work.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-            const exists = publicationsData.some(p => p.title.toLowerCase().replace(/[^a-z0-9]/g, '').includes(normTitle.slice(0, 35)));
-
-            if (!exists) {
-              newlyAdded++;
-              const authorsList = (work.authorships || []).map(a => a.author?.display_name).filter(Boolean).join(', ') || 'Pair Ahmed Jiko et al.';
-              const venueName = work.primary_location?.source?.display_name || 'Peer-Reviewed / Indexed Publication';
-              const isPreprint = work.type === 'preprint';
-
-              publicationsData.unshift({
-                title: work.title,
-                authors: authorsList,
-                venue: venueName,
-                year: work.publication_year || 2026,
-                citations: work.cited_by_count || 0,
-                type: isPreprint ? 'preprint' : 'journal',
-                categories: [isPreprint ? 'preprint' : 'journal', 'clinical'],
-                doiUrl: work.doi || 'https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en',
-                doiText: work.doi ? work.doi.replace('https://doi.org/', 'DOI: ') : 'Auto-Synced via OpenAlex',
-                summary: `Automatically indexed work (${work.publication_year || 2026}) authored by ${authorsList} in ${venueName}.`
-              });
-            }
-          });
-        }
-
-        renderPublications(currentCategory);
-
-        const pubContent = document.getElementById('pubContent');
-        const pubBtn = document.getElementById('pubExpandBtn');
-        if (pubContent.classList.contains('hidden')) {
-          pubContent.classList.remove('hidden');
-          pubBtn.innerHTML = '<i class="fas fa-chevron-up accent-text"></i> <span>Collapse Publications</span>';
-        }
-
-        const totalCitations = document.getElementById('metricCitations').textContent;
-        const hIndex = document.getElementById('metricHIndex').textContent;
-
-        banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-700 flex items-center justify-between';
-        banner.innerHTML = `
-          <span><i class="fas fa-check-circle mr-1.5"></i><strong>Sync Complete:</strong> ${newlyAdded > 0 ? newlyAdded + ' new paper(s) added! ' : ''}Showing ${publicationsData.length} publications (${totalCitations} Citations · h-index ${hIndex}).</span>
-          <a href="https://scholar.google.com/citations?user=xTO_1HwAAAAJ&hl=en" target="_blank" class="underline font-semibold">Google Scholar ↗</a>
-        `;
-      } catch (err) {
-        banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-amber-500/10 border-amber-500/30 text-amber-700 flex items-center justify-between';
-        banner.innerHTML = `<span><i class="fas fa-info-circle mr-1.5"></i>Showing ${publicationsData.length} indexed papers.</span>`;
-      } finally {
-        icon.classList.remove('fa-spin');
-        btn.disabled = false;
-      }
+    const pubContent = document.getElementById('pubContent');
+    const pubBtn = document.getElementById('pubExpandBtn');
+    if (pubContent.classList.contains('hidden')) {
+      pubContent.classList.remove('hidden');
+      pubBtn.innerHTML = '<i class="fas fa-chevron-up accent-text"></i> <span>Collapse Publications</span>';
     }
+
+    const totalCitations = document.getElementById('metricCitations').textContent;
+    const hIndex = document.getElementById('metricHIndex').textContent;
+    const rgWorks = document.getElementById('combinedRgPubs')?.textContent || publicationsData.length;
+
+    banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-700 flex items-center justify-between';
+    banner.innerHTML = `
+      <span><i class="fas fa-check-circle mr-1.5"></i><strong>Synced:</strong> ${publicationsData.length} publications (${totalCitations} Scholar citations · h-index ${hIndex} · ResearchGate works: ${rgWorks}).</span>
+      <a href="https://www.researchgate.net/profile/Pair-Jiko" target="_blank" rel="noopener" class="underline font-semibold">ResearchGate ↗</a>
+    `;
+  } catch (err) {
+    banner.className = 'text-xs px-3.5 py-2.5 rounded-xl border bg-amber-500/10 border-amber-500/30 text-amber-700 flex items-center justify-between';
+    banner.innerHTML = `<span><i class="fas fa-info-circle mr-1.5"></i>Could not refresh scholar_data.json; showing current list.</span>`;
+  } finally {
+    icon.classList.remove('fa-spin');
+    btn.disabled = false;
+  }
+}
 
     function setThemeMode(mode) {
       document.body.setAttribute('data-mode', mode);
