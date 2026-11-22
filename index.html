@@ -881,29 +881,35 @@
       </div>
     </section>
 
-    <!-- ========== 9. CONTACT FORM ========== -->
+    <!-- ========== 9. CONTACT FORM (REAL EMAIL DELIVERY VIA FORMSUBMIT) ========== -->
     <section id="contact" class="theme-card rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto w-full space-y-4">
       <div class="text-center">
         <h3 class="text-lg font-bold theme-text-main mb-1">Get in Touch</h3>
         <p class="text-xs theme-text-muted">For research collaboration, clinical laboratory consultancy, or mentorship requests.</p>
       </div>
       <form id="contactForm" class="space-y-3 text-xs">
+        <input type="hidden" name="_subject" value="New Portfolio Inquiry — Pair Ahmed Jiko">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <!-- Honeypot anti-spam field -->
+        <input type="text" name="_honey" style="display:none">
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input type="text" placeholder="Full Name" required class="w-full theme-input rounded-xl p-2.5 transition">
-          <input type="email" placeholder="Email Address" required class="w-full theme-input rounded-xl p-2.5 transition">
+          <input type="text" name="name" placeholder="Full Name" required class="w-full theme-input rounded-xl p-2.5 transition">
+          <input type="email" name="email" placeholder="Email Address" required class="w-full theme-input rounded-xl p-2.5 transition">
         </div>
-        <select required class="w-full theme-input rounded-xl p-2.5 transition">
+        <select name="inquiry_type" required class="w-full theme-input rounded-xl p-2.5 transition">
           <option value="" disabled selected>Select Inquiry Subject</option>
-          <option value="research">Research Collaboration</option>
-          <option value="clinical">Clinical Trial / Laboratory Consultancy</option>
-          <option value="publication">Publication / Peer-Review Inquiry</option>
-          <option value="other">Other</option>
+          <option value="Research Collaboration">Research Collaboration</option>
+          <option value="Clinical Trial / Laboratory Consultancy">Clinical Trial / Laboratory Consultancy</option>
+          <option value="Publication / Peer-Review Inquiry">Publication / Peer-Review Inquiry</option>
+          <option value="Other">Other</option>
         </select>
-        <textarea rows="3" placeholder="Write your message here..." required class="w-full theme-input rounded-xl p-2.5 transition"></textarea>
+        <textarea name="message" rows="3" placeholder="Write your message here..." required class="w-full theme-input rounded-xl p-2.5 transition"></textarea>
         <button type="submit" id="submitBtn" class="w-full py-2.5 accent-bg font-semibold rounded-xl transition shadow-sm">Send Message</button>
+        <p id="formFeedback" class="hidden text-center text-[11px] font-medium pt-1"></p>
       </form>
     </section>
-
     <!-- Footer -->
     <footer class="text-center text-[11px] theme-text-muted pb-6 space-y-1">
       <p class="theme-text-body font-medium">Pair Ahmed Jiko · 1534/B Sayed Shah Road, Chawkbazar, Chattogram 4203, Bangladesh</p>
